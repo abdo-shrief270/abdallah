@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\RoutsExport;
-use App\Http\Requests\Routs\StoreRoutRequest;
-use App\Http\Requests\Routs\UpdateRoutRequest;
+use App\Exports\routsExport;
+use App\Http\Requests\routs\StoreRoutRequest;
+use App\Http\Requests\routs\UpdateRoutRequest;
 use App\Models\Rout;
 use \Maatwebsite\Excel\Facades\Excel;
 
@@ -13,11 +13,11 @@ class RoutController extends Controller
     public function index()
     {
         $routs = Rout::get();
-        return view('Routs.index', compact('routs'));
+        return view('routs.index', compact('routs'));
     }
     public function create()
     {
-        return view('Routs.create');
+        return view('routs.create');
     }
     public function store(StoreRoutRequest $request)
     {
@@ -27,7 +27,7 @@ class RoutController extends Controller
     }
     public function edit(Rout $rout)
     {
-        return view('Routs.edit', compact('rout'));
+        return view('routs.edit', compact('rout'));
     }
     public function update(UpdateRoutRequest $request)
     {
@@ -46,6 +46,6 @@ class RoutController extends Controller
 
     public function export()
     {
-        return Excel::download(new RoutsExport(), 'routs_'.now().'.xlsx');
+        return Excel::download(new routsExport(), 'routs_'.now().'.xlsx');
     }
 }
