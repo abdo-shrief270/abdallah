@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Sales Admin | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <title>{{env("APP_NAME")}}</title>
     <link rel="icon" type="image/x-icon" href="{{asset("assets/img/favicon.ico")}}"/>
     <link href="{{asset("assets/css/loader.css")}}" rel="stylesheet" type="text/css" />
     <script src="{{asset("assets/js/loader.js")}}"></script>
@@ -35,7 +35,12 @@
 <!--  BEGIN CONTENT PART  -->
 @yield('content')
 <!--  END CONTENT PART  -->
-
+    <div class="footer-wrapper">
+        <div class="footer-section f-section-1">
+            <p class="">Copyright © 2025 <a class="text-primary" target="_blank" href="https://github.com/abdo-shrief270">Abdo Shrief</a>, All rights reserved.</p>
+        </div>
+    </div>
+</div>
 </div>
 <!-- END MAIN CONTAINER -->
 @include('layout.footer')

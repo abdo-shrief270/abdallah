@@ -3,11 +3,6 @@
 
     <link href="{{asset("plugins/apex/apexcharts.css")}}" rel="stylesheet" type="text/css">
     <link href="{{asset("assets/css/dashboard/dash_1.css")}}" rel="stylesheet" type="text/css" />
-    <style class="dark-theme">
-        #chart-2 path {
-            stroke: #0e1726;
-        }
-    </style>
 
 @endsection
 
@@ -57,7 +52,7 @@
             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                 <div class="widget widget-chart-two">
                     <div class="widget-heading">
-                        <h5 class="">Sales by Category</h5>
+                        <h5 class="">عدد المراكز</h5>
                     </div>
                     <div class="widget-content">
                         <div id="chart-2" class=""></div>

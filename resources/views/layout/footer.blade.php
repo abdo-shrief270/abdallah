@@ -17,6 +17,6 @@
 @yield('scripts')
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
-
+@include('sweetalert::alert')
 </body>
 </html>

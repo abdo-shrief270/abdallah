@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('gov_id');
+            $table->foreign('gov_id')->references('id')->on('govs')->onDelete('cascade');
             $table->timestamps();
         });
     }
