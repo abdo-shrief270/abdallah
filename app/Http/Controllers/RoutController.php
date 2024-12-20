@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\routsExport;
-use App\Http\Requests\routs\StoreRoutRequest;
-use App\Http\Requests\routs\UpdateRoutRequest;
+use App\Http\Requests\Routs\StoreRoutRequest;
+use App\Http\Requests\Routs\UpdateRoutRequest;
 use App\Models\Rout;
 use \Maatwebsite\Excel\Facades\Excel;
 

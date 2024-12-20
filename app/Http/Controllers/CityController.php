@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CitiesExport;
-use App\Http\Requests\Cities\DeleteCityRequest;
 use App\Http\Requests\Cities\StoreCityRequest;
 use App\Http\Requests\Cities\UpdateCityRequest;
 use App\Models\City;
