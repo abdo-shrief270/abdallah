@@ -1,10 +1,9 @@
 <?php
 
 use App\Http\Controllers\CityController;
-use App\Http\Controllers\GOVController;
+use App\Http\Controllers\GovController;
 use App\Http\Controllers\RoutController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 
