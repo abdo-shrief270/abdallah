@@ -12,6 +12,6 @@ class CitiesExport implements FromView
     public function view(): View
     {
         $cities=City::with('gov')->get();
-        return view('Cities.export',compact('cities'));
+        return view('cities.export',compact('cities'));
     }
 }

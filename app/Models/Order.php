@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
-    protected $fillable = ['code','customer_name','customer_phone','user_id','product_id','quantity','net_price','discount','total_price','address','city_id'];
+    protected $fillable = ['customer_name','customer_phone','user_id','product_id','quantity','add_discount','total_price','address','city_id','status'];
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -18,7 +18,7 @@ class Order extends Model
     }
     public function city() : BelongsTo
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class)->with('gov');
     }
 
 

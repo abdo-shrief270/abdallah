@@ -2,17 +2,16 @@
 
 namespace App\Exports;
 
-use App\Models\Rout;
+use App\Models\Order;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class RoutsExport implements FromView
+class OrdersExport implements FromView
 {
-
     public function view(): View
     {
-        $routs=Rout::get();
-        return view('routs.export',compact('routs'));
+        $orders=Order::get();
+        return view('products.export',compact('orders'));
     }
 }

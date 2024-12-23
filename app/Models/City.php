@@ -11,7 +11,7 @@ class City extends Model
 
     public function gov() : BelongsTo
     {
-        return $this->belongsTo(Gov::class);
+        return $this->belongsTo(Gov::class)->with('rout');
     }
 
 }

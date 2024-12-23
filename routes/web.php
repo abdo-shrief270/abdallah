@@ -74,18 +74,24 @@ Route::prefix('orders')->name('orders.')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('index');
     Route::get('/create', [OrderController::class, 'create'])->name('create');
     Route::post('/store', [OrderController::class, 'store'])->name('store');
-    Route::delete('/delete', [OrderController::class, 'delete'])->name('delete');
+    Route::get('/delete', [OrderController::class, 'delete'])->name('delete');
     Route::get('/edit/{order}', [OrderController::class, 'edit'])->name('edit');
-    Route::put('/update/{order}', [OrderController::class, 'update'])->name('update');
+    Route::post('/update/{order}', [OrderController::class, 'update'])->name('update');
+    Route::get('/export', [OrderController::class, 'export'])->name('export');
+    Route::get('/exportNew', [OrderController::class, 'exportNew'])->name('exportNew');
+    Route::get('/exportUnFinished', [OrderController::class, 'exportUnFinished'])->name('exportUnFinished');
+    Route::get('/exportFinished', [OrderController::class, 'exportFinished'])->name('exportFinished');
 });
 
 
-
-Route::prefix('owners')->name('owners.')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('index');
-    Route::get('/create', [UserController::class, 'create'])->name('create');
-    Route::post('/store', [UserController::class, 'store'])->name('store');
-    Route::delete('/delete', [UserController::class, 'delete'])->name('delete');
-    Route::get('/edit/{owner}', [UserController::class, 'edit'])->name('edit');
-    Route::put('/update/{owner}', [UserController::class, 'update'])->name('update');
-});
+//
+//
+//
+//Route::prefix('owners')->name('owners.')->group(function () {
+//    Route::get('/', [UserController::class, 'index'])->name('index');
+//    Route::get('/create', [UserController::class, 'create'])->name('create');
+//    Route::post('/store', [UserController::class, 'store'])->name('store');
+//    Route::delete('/delete', [UserController::class, 'delete'])->name('delete');
+//    Route::get('/edit/{owner}', [UserController::class, 'edit'])->name('edit');
+//    Route::put('/update/{owner}', [UserController::class, 'update'])->name('update');
+//});

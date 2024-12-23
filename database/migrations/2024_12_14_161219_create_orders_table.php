@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('code');
             $table->string('customer_name');
             $table->string('customer_phone');
-            $table->decimal('net_price', 8, 2);
-            $table->decimal('discount', 8, 2)->nullable();
+            $table->decimal('add_discount', 8, 2)->nullable();
             $table->decimal('total_price', 8, 2);
             $table->string('address');
             $table->unsignedBigInteger('user_id');
@@ -27,13 +26,11 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->enum('status',['new','unFinished','finished'])->default('new');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('orders');

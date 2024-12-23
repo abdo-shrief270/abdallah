@@ -12,6 +12,6 @@ class GovsExport implements FromView
     public function view(): View
     {
         $govs=Gov::with('rout')->get();
-        return view('Govs.export',compact('govs'));
+        return view('govs.export',compact('govs'));
     }
 }

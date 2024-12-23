@@ -127,10 +127,17 @@
                         </li>
 
                     </ul>
+
+
                 </nav>
             </div>
             <!--  END TOPBAR  -->
 
+        </ul>
+        <ul class="navbar-item flex-row ml-auto">
+            <li class="nav-item align-self-center">
+                <a class="btn btn-primary" href="{{route('orders.create')}}">عمل اوردر</a>
+            </li>
         </ul>
 
     </header>

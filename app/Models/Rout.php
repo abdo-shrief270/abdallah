@@ -11,6 +11,6 @@ class Rout extends Model
 
     public function gov() : HasMany
     {
-        return $this->hasMany(Gov::class);
+        return $this->hasMany(Gov::class)->with('city');
     }
 }

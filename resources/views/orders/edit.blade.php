@@ -20,13 +20,15 @@
                     </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item" aria-current="page"><a href="{{route('routs.index')}}">جميع خطوط السير</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">اضافة خط سير </a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">تعديل خط سير {{$rout->name}}</a></li>
                     </ol>
                 </nav>
             </div>
             <div class="container">
 
                 <div class="container">
+
+
                     <div class="row layout-top-spacing">
 
                         <div id="basic" class="col-lg-12 layout-spacing">
@@ -34,27 +36,31 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>خطوط السير</h4>
+                                            <h4>تعديل خط سير {{$rout->name}}</h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="widget-content widget-content-area">
                                     <div class="row">
                                         <div class="col-lg-6 col-12 mx-auto">
-                                            <form action="{{route('routs.store')}}" method="POST">
+                                            <form action="{{route('routs.update',$rout->id)}}" method="POST">
                                                 @csrf
+                                                @error('rout_id')
+                                                    <div class="text-danger mb-3" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                                 @error('name')
                                                 <div class="text-danger mb-3" role="alert">
                                                     {{ $message }}
                                                 </div>
                                                 @enderror
-                                                <div class="form-row">
-                                                    <div class="col-md-12 mb-4">
-                                                        <label for="fullName">الاسم</label>
-                                                        <input type="text" name="name" class="form-control" id="fullName" placeholder="ادخل الاسم ...." value="" required>
-                                                    </div>
+                                                <input type="hidden" name="rout_id" value="{{$rout->id}}">
+                                                <div class="form-group">
+                                                    <label for="t-text">الاسم</label>
+                                                    <input type="text" name="name" placeholder="ادخل الاسم ...." class="form-control" value="{{$rout->name}}" required>
                                                 </div>
-                                                <input type="submit" name="txt" value="اضافة" class="mt-4 btn btn-primary">
+                                                <input type="submit" name="txt" value="حفظ" class="mt-4 btn btn-primary">
                                             </form>
                                         </div>
                                     </div>
