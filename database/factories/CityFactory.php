@@ -19,6 +19,7 @@ class CityFactory extends Factory
     {
         return [
             'name' => $this->faker->streetName(),
+            'ship_cost' => $this->faker->numberBetween(0, 250),
             'gov_id' => Gov::inRandomOrder()->first()->id,
         ];
     }

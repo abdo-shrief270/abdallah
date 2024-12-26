@@ -24,6 +24,7 @@ class UpdateCityRequest extends FormRequest
         return [
             'city_id' => 'required|exists:cities,id',
             'name' =>'required|string|max:255',
+            'ship_cost' =>'required|integer',
             'gov_id' => 'required|exists:govs,id'
         ];
     }

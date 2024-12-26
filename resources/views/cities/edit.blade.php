@@ -60,6 +60,10 @@
                                                     <label for="t-text">الاسم</label>
                                                     <input id="t-text" type="text" name="name" placeholder="ادخل الاسم ...." class="form-control" value="{{$city->name}}" required>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="t-text">الاسم</label>
+                                                    <input id="t-text" type="number" name="ship_cost" placeholder="ادخل تكلفة الشحن ...." class="form-control" value="{{$city->ship_cost}}" required>
+                                                </div>
                                                 <div class="form-group mb-4">
                                                     <label for="exampleFormControlSelect1">تابع لمنطقة</label>
                                                     <select name="gov_id" class="form-control" id="exampleFormControlSelect1">

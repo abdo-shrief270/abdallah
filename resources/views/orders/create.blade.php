@@ -92,7 +92,7 @@
                                                 <div class="form-row">
                                                     <div class="col-md-12 mb-4">
                                                         <label for="fullName">اسم العميل</label>
-                                                        <input type="text" name="customer_name" class="form-control" id="fullName" placeholder="ادخل لسم العميل ...." value="" required>
+                                                        <input type="text" name="customer_name" class="form-control" id="fullName" placeholder="ادخل أسم العميل ...." value="" required>
                                                     </div>
                                                     <div class="col-md-12 mb-4">
                                                         <label for="fullName">رقم العميل</label>
@@ -131,7 +131,7 @@
                                                         <select name="product_id" class="form-control" id="exampleFormControlSelect1" >
                                                             <option>اختر الصنف</option>
                                                             @foreach($products as $product)
-                                                                <option value="{{$product->id}}">{{$product->id .' >> '. $product->name . ' >> ' . $product->price}} </option>
+                                                                <option value="{{$product->id}}">{{$product->id .' >> '. $product->name . ' >> ' . $product->net_price}} </option>
                                                             @endforeach
                                                         </select>
                                                     </div>

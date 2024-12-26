@@ -20,15 +20,15 @@ class OrderFactory extends Factory
         // Random product and user selection
         $product = Product::inRandomOrder()->first();
         $user = User::where('active',1)->inRandomOrder()->first();
-
+        $city = City::inRandomOrder()->first();
         // Random quantity between 1 and 10
         $quantity = $this->faker->numberBetween(1, 10);
 
         // Random discount between 0 and 20%
-        $addDiscount = $this->faker->randomFloat(2, 0, 100);
+        $addDiscount = $this->faker->randomFloat(0, 0, 100);
 
         // Calculate total price based on product price, quantity, and discount
-        $totalPrice = ($product->price * $quantity) * (1 - $addDiscount/100);
+        $totalPrice =  (($product->price * $quantity) + $city->ship_cost) * (1-$addDiscount/100);
 
         return [
             'customer_name' => $this->faker->name, // Random customer name
@@ -39,8 +39,8 @@ class OrderFactory extends Factory
             'add_discount' => $addDiscount, // Random discount
             'total_price' => $totalPrice, // Total price after discount
             'address' => $this->faker->address, // Random address
-            'city_id' => City::inRandomOrder()->first()->id, // Random city ID
-            'status' => $this->faker->randomElement(['new', 'unFinished', 'finished']), // Random status
+            'city_id' => $city->id, // Random city ID
+            'status' => $this->faker->randomElement(['new', 'unFinished', 'finished','canceled']), // Random status
         ];
     }
 }

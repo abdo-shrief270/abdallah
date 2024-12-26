@@ -50,6 +50,11 @@
                                                     {{ $message }}
                                                 </div>
                                                 @enderror
+                                                @error('ship_cost')
+                                                <div class="text-danger mb-3" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                                 @error('gov_id')
                                                 <div class="text-danger mb-3" role="alert">
                                                     {{ $message }}
@@ -58,6 +63,10 @@
                                                 <div class="form-group">
                                                     <label for="t-text">الاسم</label>
                                                     <input id="t-text" type="text" name="name" placeholder="ادخل الاسم ...." class="form-control"  required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="t-text">الاسم</label>
+                                                    <input id="t-text" type="number" name="ship_cost" placeholder="ادخل تكلفة الشحن ...." class="form-control"  required>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label for="exampleFormControlSelect1">تابع لمنطقة</label>

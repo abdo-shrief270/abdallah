@@ -43,6 +43,7 @@
                                     <tr>
                                         <th class="checkbox-column text-center"> الكود </th>
                                         <th>الاسم</th>
+                                        <th>تكلفة الشحن</th>
                                         <th>المنطقة</th>
                                         <th class="text-center">عمليات</th>
                                     </tr>
@@ -52,6 +53,7 @@
                                         <tr>
                                             <td class="checkbox-column text-center h4"> {{$city->id}} </td>
                                             <td class="font-weight-bolder h2">{{$city->name}}</td>
+                                            <td class="font-weight-bolder h2">{{$city->ship_cost}}</td>
                                             <td class="font-weight-bolder h2">{{$city->gov->name}}</td>
                                             <td class="text-center">
                                                 <ul class="table-controls">

@@ -14,8 +14,8 @@ class ProductFactory extends Factory
 
     public function definition()
     {
-        $netPrice = $this->faker->randomFloat(2, 10, 1000); // Generate random net price between 10 and 1000
-        $discount = $this->faker->randomFloat(2, 0, 100);  // Discount between 0 and 50% (0.5 means 50%)
+        $netPrice = $this->faker->randomFloat(0, 10, 1000); // Generate random net price between 10 and 1000
+        $discount = $this->faker->randomFloat(0, 0, 100);  // Discount between 0 and 50% (0.5 means 50%)
         $price = $netPrice * (1 - $discount/100); // Calculate price after discount
 
         return [

@@ -23,6 +23,7 @@ class StoreCityRequest extends FormRequest
     {
         return [
             'name' =>'required|string|max:255|unique:cities,name',
+            'ship_cost' =>'required|integer',
             'gov_id' => 'required|exists:govs,id'
         ];
     }

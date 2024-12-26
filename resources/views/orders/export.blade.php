@@ -6,16 +6,18 @@
         <th>رقم العميل</th>
         <th>مركز العميل</th>
         <th>العنوان</th>
-        <th>اسم المندب</th>
-        <th>رقم المندب</th>
+        <th>اسم المندوب</th>
+        <th>رقم المندوب</th>
         <th>اسم المنتج</th>
         <th>سعر المنتج</th>
         <th>الكمية</th>
         <th>اجمالي السعر</th>
         <th>الخصم الأساسي</th>
         <th>السعر النهائي</th>
-        <th>الخصم الأضافي</th>
+        <th>تكلفة الشحن</th>
         <th>تكلفة الاوردر</th>
+        <th>الخصم الأضافي</th>
+        <th>التكلفة الأجمالية</th>
         <th>حالة الاوردر</th>
     </tr>
     </thead>
@@ -33,11 +35,13 @@
             <td class="text-primary">{{$order->product->net_price}}</td>
             <td>{{$order->quantity}}</td>
             <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
-            <td class="text-danger">{{$order->product->discount}}</td>
+            <td class="text-danger">{{$order->product->discount}}%</td>
             <td>{{$order->product->price * $order->quantity}}</td>
-            <td class="text-danger">{{$order->add_discount}}</td>
+            <td class="text-warning">{{$order->city->ship_cost}}</td>
+            <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
+            <td class="text-danger">{{$order->add_discount}}%</td>
             <td class="text-success">{{$order->total_price}}</td>
-            <td>{!! $order->status=='new' ? 'جديد' : ( $order->status=='unFinished' ? 'غير مستلم' : 'مستلم' )!!}</td>
+            <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
         </tr>
     @endforeach
     </tbody>
