@@ -44,6 +44,6 @@ class DatabaseSeeder extends Seeder
         City::factory(80)->create();
         User::factory(20)->create();
         Product::factory(10)->create();
-        Order::factory(10000)->create();
+        Order::factory(1000)->create();
     }
 }
