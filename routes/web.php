@@ -14,9 +14,7 @@ Route::post('/login', [AuthController::class,'login'])->name('login');
 Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 //Route::get('/', [CityController::class,'index'])->name('home');
 
-Route::get('/home',function (){
-    return redirect()->route('orders.index');
-})->name('home');
+Route::get('/home', [OrderController::class, 'index'])->name('home');
 
 Route::middleware('auth.role:owner')->group(function () {
     Route::prefix('routs')->name('routs.')->group(function () {
