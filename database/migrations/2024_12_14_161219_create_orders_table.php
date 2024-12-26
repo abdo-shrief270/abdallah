@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
             $table->string('customer_name');
             $table->string('customer_phone');
             $table->decimal('add_discount', 8, 2)->nullable();

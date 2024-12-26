@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('discount', 10, 2)->nullable();
             $table->decimal('price', 10, 2);
             $table->integer('available_quantity');
-            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

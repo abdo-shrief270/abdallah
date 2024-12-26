@@ -18,8 +18,10 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('user','product','city')->orderBy('status')->get();
-        return view('orders.index', compact('orders'));
+//        $status_arr = ['new','unFinished','finished'];
+        $orders = Order::get();
+        $groupedOrders = $orders->groupBy('status');
+        return view('orders.index', compact('orders','groupedOrders'));
     }
     public function create()
     {
@@ -34,7 +36,7 @@ class OrderController extends Controller
         $product=Product::findorFail($request->product_id)->first();
         Order::create(array_merge($request->all(),[
             'discount'=> $product->discount + $request->add_discount,
-            'total_price' => $product->price * $request->quantity - $request->add_discount,
+            'total_price' => ($product->price * $request->quantity) * (1-$request->add_discount/100),
             'status'=>'new'
         ]));
         toast("تم اضافة الأوردر بنجاح",'success');
@@ -54,12 +56,12 @@ class OrderController extends Controller
 //        return redirect()->route('govs.index');
 //    }
 //
-//    public function delete(Gov $gov)
-//    {
-//        $gov->delete();
-//        toast("تم حذف المنطقة بنجاح",'success');
-//        return redirect()->back();
-//    }
+    public function delete(Order $order)
+    {
+        $order->delete();
+        toast("تم حذف الأوردر بنجاح",'success');
+        return redirect()->back();
+    }
 
     public function export()
     {
@@ -71,10 +73,10 @@ class OrderController extends Controller
     }
     public function exportUnFinished()
     {
-        return Excel::download(new FinishedOrdersExport(), 'unFinished_orders_'.now().'.xlsx');
+        return Excel::download(new UnFinishedOrdersExport(), 'unFinished_orders_'.now().'.xlsx');
     }
     public function exportFinished()
     {
-        return Excel::download(new UnFinishedOrdersExport(), 'finished_orders_'.now().'.xlsx');
+        return Excel::download(new FinishedOrdersExport(), 'finished_orders_'.now().'.xlsx');
     }
 }

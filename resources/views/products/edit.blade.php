@@ -85,7 +85,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="t-text">كمية الخصم</label>
-                                                    <input id="t-text" type="number" value="{{old('discount')??$product->discount}}" name="discount" placeholder="ادخل كمية الخصم ...." class="form-control">
+                                                    <input id="t-text" type="number" min="0" max="100"  value="{{old('discount')??$product->discount}}" name="discount" placeholder="ادخل كمية الخصم (0-100) ...." class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="t-text">الكمية المتاحة</label>

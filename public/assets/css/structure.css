@@ -146,7 +146,7 @@ code { color: #e7515a; }
 
 
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -292,7 +292,7 @@ code { color: #e7515a; }
     width: 38px;
     opacity: 1;
 }
-.navbar .language-dropdown { 
+.navbar .language-dropdown {
     align-self: center;
     margin-right: 24px;
 }
@@ -321,9 +321,9 @@ code { color: #e7515a; }
 .navbar .language-dropdown .custom-dropdown-icon a.dropdown-toggle {
     position: relative;
     padding: 0;
-    border: none; 
+    border: none;
     transform: none;
-     font-size: 13px; 
+     font-size: 13px;
      background-color: transparent;
     text-align: inherit;
     color: #888ea8;
@@ -582,11 +582,11 @@ code { color: #e7515a; }
     margin-left: 9px;
     align-self: center;
 }
-.navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .media.file-upload svg { 
+.navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .media.file-upload svg {
     color: #e7515a;
     fill: rgba(231, 81, 90, 0.23921568627450981);
 }
-.navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .media.server-log svg { 
+.navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .media.server-log svg {
     color: #009688;
     fill: rgba(0, 150, 136, 0.3686274509803922);
 }
@@ -813,7 +813,7 @@ code { color: #e7515a; }
     width: 30px;
     height: 30px;
     border-radius: 30px;
-    box-shadow: 0 0px 0.9px rgba(0, 0, 0, 0.07), 0 0px 7px rgba(0, 0, 0, 0.14); 
+    box-shadow: 0 0px 0.9px rgba(0, 0, 0, 0.07), 0 0px 7px rgba(0, 0, 0, 0.14);
     /* margin-right: 13px; */
     border: none;
 }
@@ -933,7 +933,7 @@ code { color: #e7515a; }
         color: #ebedf2;
         fill: rgba(25, 30, 58, 0.19);
     }
-    
+
 
 
 .animated{-webkit-animation-duration:0.5s;animation-duration:0.5s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
@@ -1029,7 +1029,7 @@ code { color: #e7515a; }
     padding-left: 12px;
 }
 .page-header .breadcrumb-one .title h3 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     margin-bottom: 0;
     color: #acb0c3;
@@ -1048,8 +1048,8 @@ code { color: #e7515a; }
 .page-header .breadcrumb-one .breadcrumb-item a {
     color: #888ea8;
     vertical-align: text-bottom;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 400;
 }
 .page-header .breadcrumb-one .breadcrumb-item a:hover {
     color: #25d5e4;
@@ -1229,7 +1229,7 @@ transform: translateX(-34px);
 /*
     ====================
         More Dropdown
-    ====================    
+    ====================
 */
 .page-header .custom-dropdown-icon a.dropdown-toggle {
     position: relative;
@@ -1399,7 +1399,7 @@ transform: translateX(-34px);
         padding-left: 12px;
         border: none;
     }
-    
+
     .navbar .navbar-item .nav-item.user-profile-dropdown {
         margin-left: 0;
     }
@@ -1521,7 +1521,7 @@ transform: translateX(-34px);
         display: none;
     }
     .topbar-nav.header nav#topbar ul.menu-categories li.menu a > div span {
-        font-size: 14px;
+        font-size: 20px;
         font-weight: 600;
         color: #bfc9d4;
         /* vertical-align: text-bottom; */
@@ -1537,7 +1537,7 @@ transform: translateX(-34px);
         /* visibility: visible; */
         /* opacity: 1; */
         /* transform: translateY(0%); */
-        /* transition-delay: 0s, 0s, 0.3s;    */} 
+        /* transition-delay: 0s, 0s, 0.3s;    */}
     .topbar-nav.header nav#topbar ul.menu-categories li.menu .submenu {
         position: absolute;
         /* top: 47px; */
@@ -1590,10 +1590,9 @@ transform: translateX(-34px);
         align-items: center;
         transition: all 0.2s ease-in-out;
         padding: 4px 24px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #888ea8;
-        letter-spacing: 0px;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0;
         line-height: 24px;
     }
     .topbar-nav.header nav#topbar ul.menu-categories li.menu .submenu li.active a {
@@ -1745,7 +1744,7 @@ transform: translateX(-34px);
         display: block;
         opacity: .7;
     }
-    
+
 }
 
 .animated{-webkit-animation-duration:0.6s;animation-duration:0.6s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
@@ -1954,8 +1953,8 @@ transform: translateX(-34px);
         align-self: center;
     }
     .topbar-nav.header nav#topbar ul.menu-categories li.menu a > div span {
-        font-size: 13px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 400;
         color: #888ea8;
         vertical-align: middle;
     }
@@ -1965,7 +1964,7 @@ transform: translateX(-34px);
     #sidebar ul.menu-categories ul.submenu > li.active a {
     }
     .topbar-nav.header nav#topbar ul.menu-categories li.menu .submenu li.active a { color: #25d5e4; font-weight: 700; }
-    .topbar-nav.header nav#topbar ul.menu-categories li.menu.active a[aria-expanded="false"] > div svg:not(.feather-chevron-down), 
+    .topbar-nav.header nav#topbar ul.menu-categories li.menu.active a[aria-expanded="false"] > div svg:not(.feather-chevron-down),
     .topbar-nav.header nav#topbar ul.menu-categories li.menu.active a[aria-expanded="true"] > div svg:not(.feather-chevron-down) {
         color: #fff;
         stroke-width: 2px;
@@ -1975,8 +1974,8 @@ transform: translateX(-34px);
     .topbar-nav.header nav#topbar ul.menu-categories li.menu.active a[aria-expanded="false"] > div span,
     .topbar-nav.header nav#topbar ul.menu-categories li.menu.active a[aria-expanded="true"] > div span {
         color: #fff;
-        border-radius: 12px;
-        font-weight: 600;
+        border-radius: 18px;
+        font-weight: 400;
         position: relative;
         transition: all .2s ease-in-out;
     }
@@ -1986,8 +1985,8 @@ transform: translateX(-34px);
         /* color: #555555; */
         padding: 12px 24px 12px 11px;
         margin-right: 40px;
-        font-size: 13px;
-        font-weight: 500;
+        font-size: 16px;
+        font-weight: 300;
         color: #bfc9d4;
     }
     .topbar-nav.header nav#topbar ul.menu-categories li.menu .submenu li a:before {
@@ -2026,7 +2025,7 @@ transform: translateX(-34px);
         right: 25px;
     }
     .topbar-nav.header nav#topbar ul.menu-categories li.menu .submenu li ul.sub-submenu li.sub-sub-submenu-list { position: relative; }
-    
+
 }
 @media (max-width: 1419px) and (min-width: 1200px) {
     .topbar-nav.header nav#topbar ul.menu-categories li.menu:nth-child(6) .submenu .sub-sub-submenu-list .sub-submenu .sub-sub-submenu-list .sub-submenu {

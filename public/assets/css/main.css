@@ -91,13 +91,13 @@ select.form-custom::-ms-expand {
 .code-section code { color: #fff; }
 
 /*blockquote*/
-blockquote.blockquote { 
+blockquote.blockquote {
     color: #009688;
     padding: 20px 14px 20px 20px;
     font-size: 0.875rem;
     background-color: #1b2e4b;
-    border-bottom-left-radius: 8px; 
-    border-top-left-radius: 8px; 
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
     border: 1px solid #1b2e4b;
     border-right: 2px solid #009688;
 }
@@ -674,7 +674,7 @@ select.form-control.form-custom {
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
     color: #fff !important;
     background-color: #1b55e2;
-    border-color: #1b55e2;   
+    border-color: #1b55e2;
 }
 .btn-primary .caret { border-top-color: #fff }
 .btn-group.open .btn-primary.dropdown-toggle { background-color: #c2d5ff }
@@ -922,8 +922,8 @@ select.form-control.form-custom {
     -moz-box-shadow: none !important;
     box-shadow: none !important;
 }
-.btn.box-shadow-none:not(:disabled):not(.disabled).active, 
-.btn.box-shadow-none:not(:disabled):not(.disabled):active, 
+.btn.box-shadow-none:not(:disabled):not(.disabled).active,
+.btn.box-shadow-none:not(:disabled):not(.disabled):active,
 .show>.btn.box-shadow-none.dropdown-toggle {
     border: none;
     -webkit-box-shadow: none;
@@ -1131,7 +1131,7 @@ select.form-control.form-custom {
     color: #fff !important;
     background-color: #e7515a;
     box-shadow: 0 10px 20px -10px rgba(231, 81, 90, 0.588)
-} 
+}
 .btn-outline-secondary:hover {
     color: #fff !important;
     background-color: #5c1ac3;
@@ -1185,7 +1185,7 @@ select.form-control.form-custom {
 }
 .badge:hover {
     transition: all 0.3s ease-out;
-    -webkit-transition: all 0.3s ease-out;    
+    -webkit-transition: all 0.3s ease-out;
     -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
 }
@@ -1455,7 +1455,7 @@ input[readonly], select[readonly], textarea[readonly] {
 
 .table-bordered { border: 1px solid #f1f2f3; }
 .table-striped tbody tr:nth-of-type(odd) { background-color: rgba(25, 30, 58, 0.6313725490196078) !important; }
-.table > tbody > tr > td { 
+.table > tbody > tr > td {
     vertical-align: middle;
     color: #515365;
     font-size: 13px;
@@ -1498,7 +1498,7 @@ input[readonly], select[readonly], textarea[readonly] {
 .table > tbody > tr > td svg.t-icon.t-hover-icon:hover { background-color: #e7515a; color: #fff; }
 .table-bordered td { border: 1px solid #ebedf2; }
 .table-bordered th { border: 1px solid #ebedf2; }
-.table thead th { vertical-align: bottom; border-bottom: none; }
+.table thead th { vertical-align: middle; border-bottom: none; }
 .table-hover:not(.table-light) tbody tr:hover { background-color: rgba(25, 30, 58, 0.6313725490196078); }
 .table-controls>li>a svg { color: #25d5e4; }
 .table tr td .custom-dropdown.t-custom-dropdown a.dropdown-toggle,
@@ -1593,15 +1593,15 @@ table .badge-info, table .badge-secondary, table .badge-dark  {
     color: #fff;
 }
 
-/*  
+/*
     ==========================
-        Background Colors  
+        Background Colors
     ==========================
 */
 
 
-/*  
-    Default  
+/*
+    Default
 */
 .bg-primary {
     background-color: #1b55e2!important;
@@ -1640,8 +1640,8 @@ table .badge-info, table .badge-secondary, table .badge-dark  {
 }
 
 
-/*  
-    Light Background  
+/*
+    Light Background
 */
 .bg-light-primary {
     background-color: #c2d5ff!important;
@@ -1679,7 +1679,7 @@ table .badge-info, table .badge-secondary, table .badge-dark  {
     color: #fff
 }
 
-/*  
+/*
     Progress Bar
 */
 

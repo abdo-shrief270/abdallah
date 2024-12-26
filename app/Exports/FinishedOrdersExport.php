@@ -14,6 +14,6 @@ class FinishedOrdersExport implements FromView
     public function view(): View
     {
         $orders=Order::where('status','finished')->get();
-        return view('products.export',compact('orders'));
+        return view('orders.export',compact('orders'));
     }
 }

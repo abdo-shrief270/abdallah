@@ -21,7 +21,6 @@ class StoreOrderRequest extends FormRequest
      */
     public function rules(): array
     {
-//        'code','customer_name','customer_phone','user_id','product_id','quantity','net_price','discount','total_price','address','city_id','status'
         return [
             'customer_name'=>'required|string|max:50',
             'customer_phone'=>'required|string|max:20',

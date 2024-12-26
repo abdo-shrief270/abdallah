@@ -3,15 +3,16 @@
 namespace App\Exports;
 
 use App\Models\Order;
+use Illuminate\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class NewOrdersExport implements FromCollection
+class NewOrdersExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
-    {
-        return Order::all();
-    }
+
+    public function view(): View
+{
+    $orders=Order::where('status','new')->get();
+    return view('orders.export',compact('orders'));
+}
 }

@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         Product::create(array_merge($request->all(),[
-            'price'=>$request->get('net_price') - $request->get('discount')
+            'price'=>$request->get('net_price') * (1 - $request->get('discount')/100)
         ]));
         toast("تم اضافة الصنف بنجاح",'success');
         return redirect()->route('products.index');
@@ -36,7 +36,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($request->product_id);
         $product->update(array_merge($request->all(),[
-            'price'=>$request->get('net_price') - $request->get('discount')
+            'price'=>$request->get('net_price') * (1 - $request->get('discount')/100)
         ]));
         toast("تم تعديل الصنف بنجاح",'success');
         return redirect()->route('products.index');

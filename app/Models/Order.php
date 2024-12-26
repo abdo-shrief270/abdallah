@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
+    use HasFactory;
     protected $fillable = ['customer_name','customer_phone','user_id','product_id','quantity','add_discount','total_price','address','city_id','status'];
     public function user() : BelongsTo
     {

@@ -46,6 +46,10 @@
                                         <th>رقم الهاتف</th>
                                         <th>رقم البطاقة</th>
                                         <th>تابع لخط سير</th>
+                                        <th>عدد الأوردرات</th>
+                                        <th>عدد الأوردرات الجديدة</th>
+                                        <th>عدد الأوردرات الغير مستلمة</th>
+                                        <th>عدد الأوردرات المستلمة</th>
                                         <th>الحالة</th>
                                         <th class="text-center">عمليات</th>
                                     </tr>
@@ -58,6 +62,10 @@
                                             <td class="font-weight-bolder h2">{{$user->phone}}</td>
                                             <td class="font-weight-bolder h2">{{$user->id_number}}</td>
                                             <td class="font-weight-bolder h2">{{$user->rout->name}}</td>
+                                            <td class="text-primary">{{$user->assignedOrdersCount()}}</td>
+                                            <td class="text-warning">{{$user->newOrdersCount()}}</td>
+                                            <td class="text-danger">{{$user->unFinishedOrdersCount()}}</td>
+                                            <td class="text-success">{{$user->finishedOrdersCount()}}</td>
                                             <td class="font-weight-bolder h2">{!! $user->active ? '<span class="badge outline-badge-success">نشط</span>' : '<span class="badge outline-badge-danger">غير نشط</span>'!!}</td>
                                             <td class="text-center">
                                                 <ul class="table-controls">

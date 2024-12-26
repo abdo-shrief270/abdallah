@@ -11,7 +11,7 @@ class OrdersExport implements FromView
 {
     public function view(): View
     {
-        $orders=Order::get();
-        return view('products.export',compact('orders'));
+        $orders=Order::orderBy('status')->get();
+        return view('orders.export',compact('orders'));
     }
 }

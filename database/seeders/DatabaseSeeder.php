@@ -2,9 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
+use App\Models\Gov;
+use App\Models\Order;
+use App\Models\Owner;
+use App\Models\Product;
+use App\Models\Rout;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +19,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Artisan::call('migrate:fresh');
+        Owner::factory()->create([
+            'name' => 'Abdallah Ayman',
+            'phone' => '01115716930',
+            'password' => bcrypt('12345678')
         ]);
+        Rout::factory(5)->create();
+        Gov::factory(20)->create();
+        City::factory(80)->create();
+        User::factory(20)->create();
+        Product::factory(10)->create();
+        Order::factory(100)->create();
     }
 }
