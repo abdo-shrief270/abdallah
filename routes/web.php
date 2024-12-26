@@ -10,6 +10,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AuthController::class,'loginPage'])->name('loginPage');
+Route::get('/change', [AuthController::class,'changePasswordPage'])->name('changePasswordPage');
+Route::post('/changePassword', [AuthController::class,'changePassword'])->name('changePassword');
 Route::post('/login', [AuthController::class,'login'])->name('login');
 Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 //Route::get('/', [CityController::class,'index'])->name('home');

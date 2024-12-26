@@ -13,6 +13,10 @@ class AuthenticateRole
     {
         // Check for user role with respective guards
         if ($role === 'user' && Auth::guard('user')->check()) {
+            if(!auth('user')->user()->active){
+                toast('برجاء تفيير كلمة السر','warning');
+                return redirect()->route('changePasswordPage');
+            }
             return $next($request);
         }
 

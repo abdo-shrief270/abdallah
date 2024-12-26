@@ -15,6 +15,10 @@ class AuthController extends Controller
     public function login(LoginRequest $request){
 
         if (Auth::guard('user')->attempt(['phone'=>$request->phone,'password' => $request->password])) {
+            if(!auth('user')->user()->active){
+                toast('مرحبا بك ايها المندوب برجاء تفيير كلمة السر','warning');
+                return redirect()->route('changePasswordPage');
+            }
             toast('مرحبا بك ايها المندوب','success');
             return redirect()->route('home_user');
         }
@@ -33,5 +37,20 @@ class AuthController extends Controller
         Auth::guard('owner')->logout();
         toast('تم تسجيل الخروج بنجاح','success');
         return redirect()->route('login');
+    }
+
+
+    public function changePasswordPage(){
+        return view('change_password');
+    }
+
+    public function changePassword(Request $request){
+
+        $user = Auth::guard('user')->user();
+        $user->password = bcrypt($request->password);
+        $user->active = true;
+        $user->save();
+        toast('تم تغيير كلمة السر بنجاح','success');
+        return redirect()->route('home_user');
     }
 }
