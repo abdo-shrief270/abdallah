@@ -19,7 +19,14 @@ class AuthenticateRole
         if ($role === 'owner' && Auth::guard('owner')->check()) {
             return $next($request);
         }
-
+        if(Auth::guard('owner')->check())
+        {
+            return redirect()->route('home');
+        }
+        if(Auth::guard('user')->check())
+        {
+            return redirect()->route('home_user');
+        }
         toast('غير مسموح لك بالدخول لهذة الصفحة','error');
         return redirect()->route('login');
     }
