@@ -28,7 +28,7 @@ class OrderController extends Controller
             $orders = Order::where('user_id',auth('user')->user()->id)->get();
             return view('orders.index', compact('orders'));
         }
-        $orders = Order::get();
+        $orders = Order::orderBy('status')->get();
         $groupedOrders = $orders->groupBy('status');
         return view('orders.index', compact('orders','groupedOrders'));
     }
