@@ -35,6 +35,7 @@
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>الأوردرات</h4>
+                                            <button class="m-2 btn btn-warning"><a href="{{route('orders.importPage')}}">استيراد أوردرات</a> </button>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +43,6 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-12 mx-auto">
                                             <form action="{{route('orders.store')}}" method="POST">
-{{--                                                'customer_name','customer_phone','user_id','product_id','quantity','net_price','discount','address','city_id','status'--}}
                                                 @csrf
                                                 @error('customer_name')
                                                 <div class="text-danger mb-3" role="alert">

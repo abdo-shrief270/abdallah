@@ -9,6 +9,7 @@ use App\Exports\OrdersExport;
 use App\Exports\UnFinishedOrdersExport;
 use App\Http\Requests\Orders\StoreOrderRequest;
 use App\Http\Requests\Orders\UpdateOrderRequest;
+use App\Imports\OrdersImport;
 use App\Models\City;
 use App\Models\Order;
 use App\Models\Product;
@@ -42,6 +43,13 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         $product=Product::findorFail($request->product_id)->first();
+        if ($product->available_quantity < $request->quantity)
+        {
+            toast('كمية الصنف المتاحة اصغر من الكمية المطلوبة','error');
+            return  redirect()->back();
+        }
+        $product->available_quantity -= $request->quantity;
+        $product->save();
         Order::create(array_merge($request->all(),[
             'discount'=> $product->discount + $request->add_discount,
             'total_price' => ($product->price * $request->quantity) * (1-$request->add_discount/100),
@@ -62,6 +70,13 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($request->order_id);
         $product=Product::findorFail($request->product_id)->first();
+        if ($product->available_quantity < $request->quantity)
+        {
+            toast('كمية الصنف المتاحة اصغر من الكمية المطلوبة','error');
+            return  redirect()->back();
+        }
+        $product->available_quantity -= $request->quantity;
+        $product->save();
         $city=City::findorFail($request->city_id)->first();
         $order->update(array_merge($request->all(),[
             'discount'=> $product->discount + $request->add_discount,
@@ -125,5 +140,24 @@ class OrderController extends Controller
     public function exportCanceled()
     {
         return Excel::download(new CanceledOrdersExport(), 'canceled_orders_'.now().'.xlsx');
+    }
+    public function importPage()
+    {
+        return view('orders.import');
+    }
+    public function import(Request $request)
+    {
+
+        $request->validate([
+            'file' => 'required|max:2048',
+        ]);
+        try {
+            Excel::import(new OrdersImport, $request->file('file'));
+            toast('تم استيراد الأوردرات بنجاح','success');
+        } catch (\Exception $e) {
+            toast($e->getMessage(),'error');
+            return back();
+        }
+        return back();
     }
 }

@@ -26,6 +26,7 @@ Route::middleware('auth.role:owner')->group(function () {
         Route::get('/delete/{rout}', [RoutController::class, 'delete'])->name('delete');
         Route::get('/edit/{rout}', [RoutController::class, 'edit'])->name('edit');
         Route::post('/update/{rout}', [RoutController::class, 'update'])->name('update');
+        Route::get('/exportRoutOrders/{rout}', [RoutController::class, 'exportRoutOrders'])->name('exportRoutOrders');
         Route::get('/export', [RoutController::class, 'export'])->name('export');
     });
 
@@ -84,6 +85,8 @@ Route::middleware('auth.role:owner')->group(function () {
         Route::get('/delete/{order}', [OrderController::class, 'delete'])->name('delete');
         Route::get('/edit/{order}', [OrderController::class, 'edit'])->name('edit');
         Route::post('/update/{order}', [OrderController::class, 'update'])->name('update');
+        Route::get('/importPage', [OrderController::class, 'importPage'])->name('importPage');
+        Route::post('/import', [OrderController::class, 'import'])->name('import');
         Route::get('/export', [OrderController::class, 'export'])->name('export');
         Route::get('/exportNew', [OrderController::class, 'exportNew'])->name('exportNew');
         Route::get('/exportUnFinished', [OrderController::class, 'exportUnFinished'])->name('exportUnFinished');

@@ -143,6 +143,9 @@
                                     <li>
                                         <a href="{{route('orders.create')}}"> اضافة أوردر</a>
                                     </li>
+                                    <li>
+                                        <a href="{{route('orders.importPage')}}"> استيراد أوردرات</a>
+                                    </li>
                                 @endif
                             </ul>
                         </li>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RoutOrdersExport;
 use App\Exports\RoutsExport;
 use App\Http\Requests\Routs\StoreRoutRequest;
 use App\Http\Requests\Routs\UpdateRoutRequest;
@@ -47,5 +48,10 @@ class RoutController extends Controller
     public function export()
     {
         return Excel::download(new RoutsExport(), 'routs_'.now().'.xlsx');
+    }
+
+    public function exportRoutOrders(Rout $rout)
+    {
+        return Excel::download(new RoutOrdersExport($rout->id), 'اوردات'.'_'.$rout->name.'_'.now().'.xlsx');
     }
 }

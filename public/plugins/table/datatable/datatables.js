@@ -5914,8 +5914,6 @@
 	 */
 	function _fnSort ( oSettings )
 	{
-        oSettings.bSorted = true;
-        return;
 		var
 			i, ien, iLen, j, jLen, k, kLen,
 			sDataType, nTh,

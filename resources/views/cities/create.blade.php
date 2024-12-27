@@ -65,7 +65,7 @@
                                                     <input id="t-text" type="text" name="name" placeholder="ادخل الاسم ...." class="form-control"  required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="t-text">الاسم</label>
+                                                    <label for="t-text">تكلفة الشحن</label>
                                                     <input id="t-text" type="number" name="ship_cost" placeholder="ادخل تكلفة الشحن ...." class="form-control"  required>
                                                 </div>
                                                 <div class="form-group mb-4">
