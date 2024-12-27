@@ -97,300 +97,308 @@
                         </div>
                     </div>
                 </div>
-                <div class="row layout-spacing">
-                    <div class="col-lg-12">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>الأوردرات الجديدة</h4>
-                                        <button class="m-2 btn btn-danger"><a href="{{route('orders.exportNew')}}">تصدير جميع الاوردرات الجديدة</a> </button>
+                @if(isset($groupedOrders['new']))
+                    <div class="row layout-spacing">
+                        <div class="col-lg-12">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4>الأوردرات الجديدة</h4>
+                                            <button class="m-2 btn btn-danger"><a href="{{route('orders.exportNew')}}">تصدير جميع الاوردرات الجديدة</a> </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="widget-content widget-content-area">
-                                <div class="table-responsive mb-4">
-                                    <table id="new_orders" class="table style-3  table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="checkbox-column text-center"> الكود </th>
-                                            <th>اسم العميل</th>
-                                            <th>رقم العميل</th>
-                                            <th>مركز العميل</th>
-                                            <th>العنوان</th>
-                                            <th>اسم المندوب</th>
-                                            <th>رقم المندوب</th>
-                                            <th>اسم المنتج</th>
-                                            <th>سعر المنتج</th>
-                                            <th>الكمية</th>
-                                            <th>اجمالي السعر</th>
-                                            <th>الخصم الأساسي</th>
-                                            <th>السعر النهائي</th>
-                                            <th>تكلفة الشحن</th>
-                                            <th>تكلفة الاوردر</th>
-                                            <th>الخصم الأضافي</th>
-                                            <th>التكلفة الأجمالية</th>
-                                            <th>حالة الاوردر</th>
-                                            <th class="text-center">عمليات</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($groupedOrders['new'] as $order)
+                                <div class="widget-content widget-content-area">
+                                    <div class="table-responsive mb-4">
+                                        <table id="new_orders" class="table style-3  table-hover">
+                                            <thead>
                                             <tr>
-                                                <td class="checkbox-column text-center h4"> {{$order->id}} </td>
-                                                <td>{{$order->customer_name}}</td>
-                                                <td>{{$order->customer_phone}}</td>
-                                                <td>{{$order->city->name}}</td>
-                                                <td>{{$order->address}}</td>
-                                                <td>{{$order->user->name}}</td>
-                                                <td>{{$order->user->phone}}</td>
-                                                <td>{{$order->product->name}}</td>
-                                                <td class="text-primary">{{$order->product->net_price}}</td>
-                                                <td>{{$order->quantity}}</td>
-                                                <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
-                                                <td class="text-danger">{{$order->product->discount}}%</td>
-                                                <td>{{$order->product->price * $order->quantity}}</td>
-                                                <td class="text-warning">{{$order->city->ship_cost}}</td>
-                                                <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
-                                                <td class="text-danger">{{$order->add_discount}}%</td>
-                                                <td class="text-success">{{$order->total_price}}</td>
-                                                <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="{{route('orders.edit',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
-                                                        <li><a href="{{route('orders.delete',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
-                                                    </ul>
-                                                </td>
+                                                <th class="checkbox-column text-center"> الكود </th>
+                                                <th>اسم العميل</th>
+                                                <th>رقم العميل</th>
+                                                <th>مركز العميل</th>
+                                                <th>العنوان</th>
+                                                <th>اسم المندوب</th>
+                                                <th>رقم المندوب</th>
+                                                <th>اسم المنتج</th>
+                                                <th>سعر المنتج</th>
+                                                <th>الكمية</th>
+                                                <th>اجمالي السعر</th>
+                                                <th>الخصم الأساسي</th>
+                                                <th>السعر النهائي</th>
+                                                <th>تكلفة الشحن</th>
+                                                <th>تكلفة الاوردر</th>
+                                                <th>الخصم الأضافي</th>
+                                                <th>التكلفة الأجمالية</th>
+                                                <th>حالة الاوردر</th>
+                                                <th class="text-center">عمليات</th>
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($groupedOrders['new'] as $order)
+                                                <tr>
+                                                    <td class="checkbox-column text-center h4"> {{$order->id}} </td>
+                                                    <td>{{$order->customer_name}}</td>
+                                                    <td>{{$order->customer_phone}}</td>
+                                                    <td>{{$order->city->name}}</td>
+                                                    <td>{{$order->address}}</td>
+                                                    <td>{{$order->user->name}}</td>
+                                                    <td>{{$order->user->phone}}</td>
+                                                    <td>{{$order->product->name}}</td>
+                                                    <td class="text-primary">{{$order->product->net_price}}</td>
+                                                    <td>{{$order->quantity}}</td>
+                                                    <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
+                                                    <td class="text-danger">{{$order->product->discount}}%</td>
+                                                    <td>{{$order->product->price * $order->quantity}}</td>
+                                                    <td class="text-warning">{{$order->city->ship_cost}}</td>
+                                                    <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
+                                                    <td class="text-danger">{{$order->add_discount}}%</td>
+                                                    <td class="text-success">{{$order->total_price}}</td>
+                                                    <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="{{route('orders.edit',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="{{route('orders.delete',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row layout-spacing">
-                    <div class="col-lg-12">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>الأوردرات الغير مسلمة</h4>
-                                        <button class="m-2 btn btn-warning"><a href="{{route('orders.exportUnFinished')}}">تصدير جميع الاوردرات الغير مسلمة</a> </button>
+                @endif
+                @if(isset($groupedOrders['unFinished']))
+                    <div class="row layout-spacing">
+                        <div class="col-lg-12">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4>الأوردرات الغير مسلمة</h4>
+                                            <button class="m-2 btn btn-warning"><a href="{{route('orders.exportUnFinished')}}">تصدير جميع الاوردرات الغير مسلمة</a> </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="widget-content widget-content-area">
-                                <div class="table-responsive mb-4">
-                                    <table id="un_orders" class="table style-3  table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="checkbox-column text-center"> الكود </th>
-                                            <th>اسم العميل</th>
-                                            <th>رقم العميل</th>
-                                            <th>مركز العميل</th>
-                                            <th>العنوان</th>
-                                            <th>اسم المندوب</th>
-                                            <th>رقم المندوب</th>
-                                            <th>اسم المنتج</th>
-                                            <th>سعر المنتج</th>
-                                            <th>الكمية</th>
-                                            <th>اجمالي السعر</th>
-                                            <th>الخصم الأساسي</th>
-                                            <th>السعر النهائي</th>
-                                            <th>تكلفة الشحن</th>
-                                            <th>تكلفة الاوردر</th>
-                                            <th>الخصم الأضافي</th>
-                                            <th>التكلفة الأجمالية</th>
-                                            <th>حالة الاوردر</th>
-                                            <th class="text-center">عمليات</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($groupedOrders['unFinished'] as $order)
+                                <div class="widget-content widget-content-area">
+                                    <div class="table-responsive mb-4">
+                                        <table id="un_orders" class="table style-3  table-hover">
+                                            <thead>
                                             <tr>
-                                                <td class="checkbox-column text-center h4"> {{$order->id}} </td>
-                                                <td>{{$order->customer_name}}</td>
-                                                <td>{{$order->customer_phone}}</td>
-                                                <td>{{$order->city->name}}</td>
-                                                <td>{{$order->address}}</td>
-                                                <td>{{$order->user->name}}</td>
-                                                <td>{{$order->user->phone}}</td>
-                                                <td>{{$order->product->name}}</td>
-                                                <td class="text-primary">{{$order->product->net_price}}</td>
-                                                <td>{{$order->quantity}}</td>
-                                                <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
-                                                <td class="text-danger">{{$order->product->discount}}%</td>
-                                                <td>{{$order->product->price * $order->quantity}}</td>
-                                                <td class="text-warning">{{$order->city->ship_cost}}</td>
-                                                <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
-                                                <td class="text-danger">{{$order->add_discount}}%</td>
-                                                <td class="text-success">{{$order->total_price}}</td>
-                                                <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="{{route('orders.edit',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
-                                                        <li><a href="{{route('orders.delete',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
-                                                    </ul>
-                                                </td>
+                                                <th class="checkbox-column text-center"> الكود </th>
+                                                <th>اسم العميل</th>
+                                                <th>رقم العميل</th>
+                                                <th>مركز العميل</th>
+                                                <th>العنوان</th>
+                                                <th>اسم المندوب</th>
+                                                <th>رقم المندوب</th>
+                                                <th>اسم المنتج</th>
+                                                <th>سعر المنتج</th>
+                                                <th>الكمية</th>
+                                                <th>اجمالي السعر</th>
+                                                <th>الخصم الأساسي</th>
+                                                <th>السعر النهائي</th>
+                                                <th>تكلفة الشحن</th>
+                                                <th>تكلفة الاوردر</th>
+                                                <th>الخصم الأضافي</th>
+                                                <th>التكلفة الأجمالية</th>
+                                                <th>حالة الاوردر</th>
+                                                <th class="text-center">عمليات</th>
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($groupedOrders['unFinished'] as $order)
+                                                <tr>
+                                                    <td class="checkbox-column text-center h4"> {{$order->id}} </td>
+                                                    <td>{{$order->customer_name}}</td>
+                                                    <td>{{$order->customer_phone}}</td>
+                                                    <td>{{$order->city->name}}</td>
+                                                    <td>{{$order->address}}</td>
+                                                    <td>{{$order->user->name}}</td>
+                                                    <td>{{$order->user->phone}}</td>
+                                                    <td>{{$order->product->name}}</td>
+                                                    <td class="text-primary">{{$order->product->net_price}}</td>
+                                                    <td>{{$order->quantity}}</td>
+                                                    <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
+                                                    <td class="text-danger">{{$order->product->discount}}%</td>
+                                                    <td>{{$order->product->price * $order->quantity}}</td>
+                                                    <td class="text-warning">{{$order->city->ship_cost}}</td>
+                                                    <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
+                                                    <td class="text-danger">{{$order->add_discount}}%</td>
+                                                    <td class="text-success">{{$order->total_price}}</td>
+                                                    <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="{{route('orders.edit',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="{{route('orders.delete',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row layout-spacing">
-                    <div class="col-lg-12">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>الأوردرات المنتهية</h4>
-                                        <button class="m-2 btn btn-primary"><a href="{{route('orders.exportFinished')}}">تصدير جميع الاوردرات المسلمة</a> </button>
+                @endif
+                @if(isset($groupedOrders['finished']))
+                    <div class="row layout-spacing">
+                        <div class="col-lg-12">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4>الأوردرات المنتهية</h4>
+                                            <button class="m-2 btn btn-primary"><a href="{{route('orders.exportFinished')}}">تصدير جميع الاوردرات المسلمة</a> </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="widget-content widget-content-area">
-                                <div class="table-responsive mb-4">
-                                    <table id="fi_orders" class="table style-3  table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="checkbox-column text-center"> الكود </th>
-                                            <th>اسم العميل</th>
-                                            <th>رقم العميل</th>
-                                            <th>مركز العميل</th>
-                                            <th>العنوان</th>
-                                            <th>اسم المندوب</th>
-                                            <th>رقم المندوب</th>
-                                            <th>اسم المنتج</th>
-                                            <th>سعر المنتج</th>
-                                            <th>الكمية</th>
-                                            <th>اجمالي السعر</th>
-                                            <th>الخصم الأساسي</th>
-                                            <th>السعر النهائي</th>
-                                            <th>تكلفة الشحن</th>
-                                            <th>تكلفة الاوردر</th>
-                                            <th>الخصم الأضافي</th>
-                                            <th>التكلفة الأجمالية</th>
-                                            <th>حالة الاوردر</th>
-                                            <th class="text-center">عمليات</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($groupedOrders['finished'] as $order)
+                                <div class="widget-content widget-content-area">
+                                    <div class="table-responsive mb-4">
+                                        <table id="fi_orders" class="table style-3  table-hover">
+                                            <thead>
                                             <tr>
-                                                <td class="checkbox-column text-center h4"> {{$order->id}} </td>
-                                                <td>{{$order->customer_name}}</td>
-                                                <td>{{$order->customer_phone}}</td>
-                                                <td>{{$order->city->name}}</td>
-                                                <td>{{$order->address}}</td>
-                                                <td>{{$order->user->name}}</td>
-                                                <td>{{$order->user->phone}}</td>
-                                                <td>{{$order->product->name}}</td>
-                                                <td class="text-primary">{{$order->product->net_price}}</td>
-                                                <td>{{$order->quantity}}</td>
-                                                <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
-                                                <td class="text-danger">{{$order->product->discount}}%</td>
-                                                <td>{{$order->product->price * $order->quantity}}</td>
-                                                <td class="text-warning">{{$order->city->ship_cost}}</td>
-                                                <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
-                                                <td class="text-danger">{{$order->add_discount}}%</td>
-                                                <td class="text-success">{{$order->total_price}}</td>
-                                                <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="{{route('orders.edit',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
-                                                        <li><a href="{{route('orders.delete',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
-                                                    </ul>
-                                                </td>
+                                                <th class="checkbox-column text-center"> الكود </th>
+                                                <th>اسم العميل</th>
+                                                <th>رقم العميل</th>
+                                                <th>مركز العميل</th>
+                                                <th>العنوان</th>
+                                                <th>اسم المندوب</th>
+                                                <th>رقم المندوب</th>
+                                                <th>اسم المنتج</th>
+                                                <th>سعر المنتج</th>
+                                                <th>الكمية</th>
+                                                <th>اجمالي السعر</th>
+                                                <th>الخصم الأساسي</th>
+                                                <th>السعر النهائي</th>
+                                                <th>تكلفة الشحن</th>
+                                                <th>تكلفة الاوردر</th>
+                                                <th>الخصم الأضافي</th>
+                                                <th>التكلفة الأجمالية</th>
+                                                <th>حالة الاوردر</th>
+                                                <th class="text-center">عمليات</th>
                                             </tr>
-                                        @endforeach
+                                            </thead>
+                                            <tbody>
+                                            @foreach($groupedOrders['finished'] as $order)
+                                                <tr>
+                                                    <td class="checkbox-column text-center h4"> {{$order->id}} </td>
+                                                    <td>{{$order->customer_name}}</td>
+                                                    <td>{{$order->customer_phone}}</td>
+                                                    <td>{{$order->city->name}}</td>
+                                                    <td>{{$order->address}}</td>
+                                                    <td>{{$order->user->name}}</td>
+                                                    <td>{{$order->user->phone}}</td>
+                                                    <td>{{$order->product->name}}</td>
+                                                    <td class="text-primary">{{$order->product->net_price}}</td>
+                                                    <td>{{$order->quantity}}</td>
+                                                    <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
+                                                    <td class="text-danger">{{$order->product->discount}}%</td>
+                                                    <td>{{$order->product->price * $order->quantity}}</td>
+                                                    <td class="text-warning">{{$order->city->ship_cost}}</td>
+                                                    <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
+                                                    <td class="text-danger">{{$order->add_discount}}%</td>
+                                                    <td class="text-success">{{$order->total_price}}</td>
+                                                    <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="{{route('orders.edit',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="{{route('orders.delete',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row layout-spacing">
-                    <div class="col-lg-12">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>الأوردرات الملغية</h4>
-                                        <button class="m-2 btn btn-danger"><a href="{{route('orders.exportCanceled')}}">تصدير جميع الاوردرات الملغية</a> </button>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-content widget-content-area">
-                                <div class="table-responsive mb-4">
-                                    <table id="ca_orders" class="table style-3  table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="checkbox-column text-center"> الكود </th>
-                                            <th>اسم العميل</th>
-                                            <th>رقم العميل</th>
-                                            <th>مركز العميل</th>
-                                            <th>العنوان</th>
-                                            <th>اسم المندوب</th>
-                                            <th>رقم المندوب</th>
-                                            <th>اسم المنتج</th>
-                                            <th>سعر المنتج</th>
-                                            <th>الكمية</th>
-                                            <th>اجمالي السعر</th>
-                                            <th>الخصم الأساسي</th>
-                                            <th>السعر النهائي</th>
-                                            <th>تكلفة الشحن</th>
-                                            <th>تكلفة الاوردر</th>
-                                            <th>الخصم الأضافي</th>
-                                            <th>التكلفة الأجمالية</th>
-                                            <th>حالة الاوردر</th>
-                                            <th class="text-center">عمليات</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($groupedOrders['canceled'] as $order)
+                        </div>
+                    </div>
+                @endif
+                @if(isset($groupedOrders['canceled']))
+                    <div class="row layout-spacing">
+                        <div class="col-lg-12">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4>الأوردرات الملغية</h4>
+                                            <button class="m-2 btn btn-danger"><a href="{{route('orders.exportCanceled')}}">تصدير جميع الاوردرات الملغية</a> </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-content widget-content-area">
+                                    <div class="table-responsive mb-4">
+                                        <table id="ca_orders" class="table style-3  table-hover">
+                                            <thead>
                                             <tr>
-                                                <td class="checkbox-column text-center h4"> {{$order->id}} </td>
-                                                <td>{{$order->customer_name}}</td>
-                                                <td>{{$order->customer_phone}}</td>
-                                                <td>{{$order->city->name}}</td>
-                                                <td>{{$order->address}}</td>
-                                                <td>{{$order->user->name}}</td>
-                                                <td>{{$order->user->phone}}</td>
-                                                <td>{{$order->product->name}}</td>
-                                                <td class="text-primary">{{$order->product->net_price}}</td>
-                                                <td>{{$order->quantity}}</td>
-                                                <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
-                                                <td class="text-danger">{{$order->product->discount}}%</td>
-                                                <td>{{$order->product->price * $order->quantity}}</td>
-                                                <td class="text-warning">{{$order->city->ship_cost}}</td>
-                                                <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
-                                                <td class="text-danger">{{$order->add_discount}}%</td>
-                                                <td class="text-success">{{$order->total_price}}</td>
-                                                <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="{{route('orders.edit',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
-                                                        <li><a href="{{route('orders.delete',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
-                                                    </ul>
-                                                </td>
+                                                <th class="checkbox-column text-center"> الكود </th>
+                                                <th>اسم العميل</th>
+                                                <th>رقم العميل</th>
+                                                <th>مركز العميل</th>
+                                                <th>العنوان</th>
+                                                <th>اسم المندوب</th>
+                                                <th>رقم المندوب</th>
+                                                <th>اسم المنتج</th>
+                                                <th>سعر المنتج</th>
+                                                <th>الكمية</th>
+                                                <th>اجمالي السعر</th>
+                                                <th>الخصم الأساسي</th>
+                                                <th>السعر النهائي</th>
+                                                <th>تكلفة الشحن</th>
+                                                <th>تكلفة الاوردر</th>
+                                                <th>الخصم الأضافي</th>
+                                                <th>التكلفة الأجمالية</th>
+                                                <th>حالة الاوردر</th>
+                                                <th class="text-center">عمليات</th>
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($groupedOrders['canceled'] as $order)
+                                                <tr>
+                                                    <td class="checkbox-column text-center h4"> {{$order->id}} </td>
+                                                    <td>{{$order->customer_name}}</td>
+                                                    <td>{{$order->customer_phone}}</td>
+                                                    <td>{{$order->city->name}}</td>
+                                                    <td>{{$order->address}}</td>
+                                                    <td>{{$order->user->name}}</td>
+                                                    <td>{{$order->user->phone}}</td>
+                                                    <td>{{$order->product->name}}</td>
+                                                    <td class="text-primary">{{$order->product->net_price}}</td>
+                                                    <td>{{$order->quantity}}</td>
+                                                    <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
+                                                    <td class="text-danger">{{$order->product->discount}}%</td>
+                                                    <td>{{$order->product->price * $order->quantity}}</td>
+                                                    <td class="text-warning">{{$order->city->ship_cost}}</td>
+                                                    <td class="text-secondary">{{$order->product->price * $order->quantity + $order->city->ship_cost}}</td>
+                                                    <td class="text-danger">{{$order->add_discount}}%</td>
+                                                    <td class="text-success">{{$order->total_price}}</td>
+                                                    <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="{{route('orders.edit',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="{{route('orders.delete',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endif
             @if(auth()->guard('user')->check())
                 <div class="row layout-spacing">
