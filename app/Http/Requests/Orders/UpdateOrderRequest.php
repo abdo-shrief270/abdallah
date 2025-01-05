@@ -23,14 +23,11 @@ class UpdateOrderRequest extends FormRequest
     {
         return [
             'order_id' => 'required|exists:orders,id',
-            'customer_name'=>'required|string|max:50',
-            'customer_phone'=>'required|string|max:20',
+            'customer_id'=>'required|exists:customers,id',
             'user_id'=>'required|exists:users,id',
             'product_id'=>'required|exists:products,id',
             'quantity'=>'required|integer|min:0',
             'add_discount'=>'required|numeric|min:0',
-            'address'=>'required|string|max:100',
-            'city_id'=>'required|exists:cities,id',
         ];
     }
 }

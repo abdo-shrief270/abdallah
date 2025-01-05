@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GovController;
 use App\Http\Controllers\RoutController;
 use App\Http\Controllers\OrderController;
@@ -19,6 +20,16 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 Route::get('/home', [OrderController::class, 'index'])->name('home')->middleware('auth.role:owner');
 
 Route::middleware('auth.role:owner')->group(function () {
+
+    Route::prefix('customers')->name('customers.')->group(function () {
+        Route::get('/', [CustomerController::class, 'index'])->name('index');
+        Route::get('/create', [CustomerController::class, 'create'])->name('create');
+        Route::post('/store', [CustomerController::class, 'store'])->name('store');
+        Route::get('/delete/{customer}', [CustomerController::class, 'delete'])->name('delete');
+        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name('edit');
+        Route::post('/update/{customer}', [CustomerController::class, 'update'])->name('update');
+    });
+
     Route::prefix('routs')->name('routs.')->group(function () {
         Route::get('/', [RoutController::class, 'index'])->name('index');
         Route::get('/create', [RoutController::class, 'create'])->name('create');

@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\City;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +20,7 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
         $currentRow = $this->rowIndex++;
         // Find product and city using the row data
         $product = Product::findOrFail($row['kod_alsnf']);
-        $city = City::findOrFail($row['kod_almrkz']);
+        $customer = Customer::findOrFail($row['kod_alaamyl']);
 
         $errors = [];
 
@@ -42,16 +43,13 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
 
         // Create and return the order model
         return new Order([
-            'customer_name'     => $row['asm_alaamyl'],
-            'customer_phone'    => $row['rkm_alaamyl'],
-            'city_id'           => $row['kod_almrkz'],
-            'address'           => $row['aanoan_alaamyl'],
+            'customer_id'     => $row['kod_alaamyl'],
             'user_id'           => $row['kod_almndob'],
             'product_id'        => $row['kod_alsnf'],
             'quantity'          => $row['alkmy'],
             'add_discount'      => $row['alkhsm_aladafy'],
             'discount'          => $product->discount + $row['alkhsm_aladafy'],
-            'total_price'       => (($product->price * $row['alkmy']) + $city->ship_cost) * (1 - $row['alkhsm_aladafy'] / 100),
+            'total_price'       => (($product->price * $row['alkmy']) + $customer->city->ship_cost) * (1 - $row['alkhsm_aladafy'] / 100),
             'status'            => 'new'
         ]);
     }
@@ -60,6 +58,7 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
     {
         // Add rules for validation before importing
         return [
+            'kod_alaamyl' => 'required|exists:customers,id', // Ensure the product exists
             'kod_alsnf' => 'required|exists:products,id', // Ensure the product exists
             'kod_almrkz' => 'required|exists:cities,id', // Ensure the city exists
             'alkmy' => 'required|integer|min:1', // Ensure quantity is a positive integer
@@ -71,6 +70,7 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
     public function customValidationMessages()
     {
         return [
+            'kod_alaamyl.required' => 'كود العميل مطلوب',
             'kod_alsnf.required' => 'كود الصنف مطلوب',
             'kod_almrkz.required' => 'كود المركز مطلوب',
             'alkmy.required' => 'كيمة الصنف مطلوبة',

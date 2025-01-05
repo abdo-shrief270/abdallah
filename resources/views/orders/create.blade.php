@@ -44,22 +44,7 @@
                                         <div class="col-lg-6 col-12 mx-auto">
                                             <form action="{{route('orders.store')}}" method="POST">
                                                 @csrf
-                                                @error('customer_name')
-                                                <div class="text-danger mb-3" role="alert">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                                @error('customer_phone')
-                                                <div class="text-danger mb-3" role="alert">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                                @error('city_id')
-                                                <div class="text-danger mb-3" role="alert">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                                @error('address')
+                                                @error('customer_id')
                                                 <div class="text-danger mb-3" role="alert">
                                                     {{ $message }}
                                                 </div>
@@ -90,32 +75,14 @@
                                                 </div>
                                                 @enderror
                                                 <div class="form-row">
-                                                    <div class="col-md-12 mb-4">
-                                                        <label for="fullName">اسم العميل</label>
-                                                        <input type="text" name="customer_name" class="form-control" id="fullName" placeholder="ادخل أسم العميل ...." value="" required>
-                                                    </div>
-                                                    <div class="col-md-12 mb-4">
-                                                        <label for="fullName">رقم العميل</label>
-                                                        <input type="text" name="customer_phone" class="form-control" id="fullName" placeholder="ادخل رقم العميل ...." value="" required>
-                                                    </div>
                                                     <div class="col-md-12 form-group mb-4">
-                                                        <label for="exampleFormControlSelect1">تابع لمركز</label>
-                                                        <select name="city_id" class="form-control selectpicker" id="exampleFormControlSelect1">
-                                                            <option>اختر المركز</option>
-                                                            @foreach($routs as $rout)
-                                                                <optgroup label="خط سير {{$rout->name}}">
-                                                                    @foreach($rout->gov as $gov)
-                                                                            @foreach($gov->city as $city)
-                                                                                <option value="{{$city->id}}">{{$city->id .' >> '. $city->name}} </option>
-                                                                            @endforeach
-                                                                    @endforeach
-                                                                </optgroup>
+                                                        <label for="exampleFormControlSelect1">العميل</label>
+                                                        <select name="customer_id" class="form-control" id="exampleFormControlSelect1">
+                                                            <option>اختر العميل</option>
+                                                            @foreach($customers as $customer)
+                                                                <option value="{{$customer->id}}">{{$customer->id .' >> '. $customer->name}} </option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
-                                                    <div class="col-md-12 mb-4">
-                                                        <label for="fullName">عنوان العميل</label>
-                                                        <textarea type="text" name="address" class="form-control" id="fullName" placeholder="ادخل العنوان ...." required></textarea>
                                                     </div>
                                                     <div class="col-md-12 form-group mb-4">
                                                         <label for="exampleFormControlSelect1">المندوب</label>

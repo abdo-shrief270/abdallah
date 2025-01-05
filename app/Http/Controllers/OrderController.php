@@ -11,6 +11,7 @@ use App\Http\Requests\Orders\StoreOrderRequest;
 use App\Http\Requests\Orders\UpdateOrderRequest;
 use App\Imports\OrdersImport;
 use App\Models\City;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Rout;
@@ -38,10 +39,12 @@ class OrderController extends Controller
         $users = User::get();
         $routs = Rout::with('gov')->get();
         $products = Product::get();
-        return view('orders.create',compact('users','routs','products'));
+        $customers = Customer::get();
+        return view('orders.create',compact('users','routs','products','customers'));
     }
     public function store(StoreOrderRequest $request)
     {
+        $customer=Customer::findorFail($request->customer_id)->first();
         $product=Product::findorFail($request->product_id)->first();
         if ($product->available_quantity < $request->quantity)
         {
@@ -52,7 +55,7 @@ class OrderController extends Controller
         $product->save();
         Order::create(array_merge($request->all(),[
             'discount'=> $product->discount + $request->add_discount,
-            'total_price' => ($product->price * $request->quantity) * (1-$request->add_discount/100),
+            'total_price' => (($product->price * $request->quantity) + $customer->city->ship_cost) * (1-$request->add_discount/100),
             'status'=>'new'
         ]));
         toast("تم اضافة الأوردر بنجاح",'success');
@@ -64,7 +67,8 @@ class OrderController extends Controller
         $users = User::get();
         $routs = Rout::with('gov')->get();
         $products = Product::get();
-        return view('orders.edit', compact('order','users','routs','products'));
+        $customers = Customer::get();
+        return view('orders.edit', compact('order','users','routs','products','customers'));
     }
     public function update(UpdateOrderRequest $request)
     {
@@ -77,10 +81,10 @@ class OrderController extends Controller
         }
         $product->available_quantity -= $request->quantity;
         $product->save();
-        $city=City::findorFail($request->city_id)->first();
+        $customer=Customer::findorFail($request->customer_id)->first();
         $order->update(array_merge($request->all(),[
             'discount'=> $product->discount + $request->add_discount,
-            'total_price' => (($product->price * $request->quantity) + $city->ship_cost) * (1-$request->add_discount/100),
+            'total_price' => (($product->price * $request->quantity) + $customer->city->ship_cost) * (1-$request->add_discount/100),
             'status'=>'new'
         ]));
         toast("تم تعديل الأوردر بنجاح",'success');
