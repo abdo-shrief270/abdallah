@@ -60,7 +60,6 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
         return [
             'kod_alaamyl' => 'required|exists:customers,id', // Ensure the product exists
             'kod_alsnf' => 'required|exists:products,id', // Ensure the product exists
-            'kod_almrkz' => 'required|exists:cities,id', // Ensure the city exists
             'alkmy' => 'required|integer|min:1', // Ensure quantity is a positive integer
             'alkhsm_aladafy' => 'nullable|numeric|min:0|max:100', // Discount should be between 0 and 100
         ];
@@ -72,7 +71,6 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
         return [
             'kod_alaamyl.required' => 'كود العميل مطلوب',
             'kod_alsnf.required' => 'كود الصنف مطلوب',
-            'kod_almrkz.required' => 'كود المركز مطلوب',
             'alkmy.required' => 'كيمة الصنف مطلوبة',
             'alkhsm_aladafy.numeric' => 'الخصم يجب ان يكون رقم',
             'alkhsm_aladafy.min' => 'الخصم لا يمكن ان يكون اقل من 0',
