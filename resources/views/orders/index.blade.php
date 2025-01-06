@@ -70,8 +70,8 @@
                                                 <td>{{$order->customer->phone}}</td>
                                                 <td>{{$order->customer->city->name}}</td>
                                                 <td>{{$order->customer->address}}</td>
-                                                <td>{{$order->user->name}}</td>
-                                                <td>{{$order->user->phone}}</td>
+                                                <td>{{$order->user?->name}}</td>
+                                                <td>{{$order->user?->phone}}</td>
                                                 <td>{{$order->product->name}}</td>
                                                 <td class="text-primary">{{$order->product->net_price}}</td>
                                                 <td>{{$order->quantity}}</td>
@@ -144,8 +144,8 @@
                                                     <td>{{$order->customer->phone}}</td>
                                                     <td>{{$order->customer->city->name}}</td>
                                                     <td>{{$order->customer->address}}</td>
-                                                    <td>{{$order->user->name}}</td>
-                                                    <td>{{$order->user->phone}}</td>
+                                                    <td>{{$order->user?->name}}</td>
+                                                    <td>{{$order->user?->phone}}</td>
                                                     <td>{{$order->product->name}}</td>
                                                     <td class="text-primary">{{$order->product->net_price}}</td>
                                                     <td>{{$order->quantity}}</td>
@@ -219,8 +219,8 @@
                                                     <td>{{$order->customer->phone}}</td>
                                                     <td>{{$order->customer->city->name}}</td>
                                                     <td>{{$order->customer->address}}</td>
-                                                    <td>{{$order->user->name}}</td>
-                                                    <td>{{$order->user->phone}}</td>
+                                                    <td>{{$order->user?->name}}</td>
+                                                    <td>{{$order->user?->phone}}</td>
                                                     <td>{{$order->product->name}}</td>
                                                     <td class="text-primary">{{$order->product->net_price}}</td>
                                                     <td>{{$order->quantity}}</td>
@@ -294,8 +294,8 @@
                                                     <td>{{$order->customer->phone}}</td>
                                                     <td>{{$order->customer->city->name}}</td>
                                                     <td>{{$order->customer->address}}</td>
-                                                    <td>{{$order->user->name}}</td>
-                                                    <td>{{$order->user->phone}}</td>
+                                                    <td>{{$order->user?->name}}</td>
+                                                    <td>{{$order->user?->phone}}</td>
                                                     <td>{{$order->product->name}}</td>
                                                     <td class="text-primary">{{$order->product->net_price}}</td>
                                                     <td>{{$order->quantity}}</td>
@@ -371,8 +371,8 @@
                                                     <td>{{$order->customer->phone}}</td>
                                                     <td>{{$order->customer->city->name}}</td>
                                                     <td>{{$order->customer->address}}</td>
-                                                    <td>{{$order->user->name}}</td>
-                                                    <td>{{$order->user->phone}}</td>
+                                                    <td>{{$order->user?->name}}</td>
+                                                    <td>{{$order->user?->phone}}</td>
                                                     <td>{{$order->product->name}}</td>
                                                     <td class="text-primary">{{$order->product->net_price}}</td>
                                                     <td>{{$order->quantity}}</td>

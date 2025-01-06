@@ -24,7 +24,7 @@ class UpdateOrderRequest extends FormRequest
         return [
             'order_id' => 'required|exists:orders,id',
             'customer_id'=>'required|exists:customers,id',
-            'user_id'=>'required|exists:users,id',
+            'user_id'=>'nullable|exists:users,id',
             'product_id'=>'required|exists:products,id',
             'quantity'=>'required|integer|min:0',
             'add_discount'=>'required|numeric|min:0',

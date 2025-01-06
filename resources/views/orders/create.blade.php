@@ -78,7 +78,7 @@
                                                     <div class="col-md-12 form-group mb-4">
                                                         <label for="exampleFormControlSelect1">العميل</label>
                                                         <select name="customer_id" class="form-control" id="exampleFormControlSelect1">
-                                                            <option>اختر العميل</option>
+                                                            <option value>اختر العميل</option>
                                                             @foreach($customers as $customer)
                                                                 <option value="{{$customer->id}}">{{$customer->id .' >> '. $customer->name}} </option>
                                                             @endforeach
@@ -87,7 +87,7 @@
                                                     <div class="col-md-12 form-group mb-4">
                                                         <label for="exampleFormControlSelect1">المندوب</label>
                                                         <select name="user_id" class="form-control" id="exampleFormControlSelect1">
-                                                            <option>اختر المندوب</option>
+                                                            <option value>اختر المندوب</option>
                                                             @foreach($users as $user)
                                                                 <option value="{{$user->id}}">{{$user->id .' >> '. $user->name}} </option>
                                                             @endforeach

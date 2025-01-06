@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -17,6 +18,7 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
     protected $rowIndex = 2;
     public function model(array $row)
     {
+        DB::beginTransaction();
         $currentRow = $this->rowIndex++;
         // Find product and city using the row data
         $product = Product::findOrFail($row['kod_alsnf']);
@@ -44,15 +46,15 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
             return null; // Skip the row
         }
 
-
         // Update the product's available quantity
         $product->available_quantity -= $row['alkmy'];
         $product->save();
 
+        DB::commit();
         // Create and return the order model
         return new Order([
             'customer_id'       => $customer->id,
-            'user_id'           => $row['kod_almndob'],
+            'user_id'           => $row['kod_almndob']??null,
             'product_id'        => $row['kod_alsnf'],
             'quantity'          => $row['alkmy'],
             'add_discount'      => $row['alkhsm_aladafy'],

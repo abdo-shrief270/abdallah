@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->decimal('add_discount', 8, 2)->nullable();
             $table->decimal('total_price', 8, 2);
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->unsignedInteger('quantity');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
