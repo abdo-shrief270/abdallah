@@ -16,10 +16,10 @@
             <div class="page-header my-3">
                 <nav class="breadcrumb-one" aria-label="breadcrumb">
                     <div class="title">
-                        <h3>خطوط السير</h3>
+                        <h3>المحافظات</h3>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">جميع خطوط السير</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">جميع المحافظات</a></li>
                     </ol>
                 </nav>
             </div>
@@ -30,9 +30,9 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>خطوط السير</h4>
-                                    <button class="btn btn-primary"><a href="{{route('routs.create')}}"> اضافة خط سير</a> </button>
-                                    <button class="btn btn-secondary"><a href="{{route('routs.export')}}"> تصدير خطوط السير</a> </button>
+                                    <h4>المحافظات</h4>
+                                    <button class="btn btn-primary"><a href="{{route('routs.create')}}"> اضافة محافظة</a> </button>
+                                    <button class="btn btn-secondary"><a href="{{route('routs.export')}}"> تصدير المحافظات</a> </button>
                                 </div>
                             </div>
                         </div>

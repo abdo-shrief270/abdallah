@@ -24,7 +24,7 @@ class GovController extends Controller
     public function store(StoreGovRequest $request)
     {
         Gov::create($request->all());
-        toast("تم اضافة المنطقة بنجاح",'success');
+        toast("تم اضافة المركز بنجاح",'success');
         return redirect()->route('govs.index');
     }
     public function edit(Gov $gov)
@@ -36,14 +36,14 @@ class GovController extends Controller
     {
         $gov = Gov::findOrFail($request->gov_id);
         $gov->update($request->all());
-        toast("تم تعديل المنطقة بنجاح",'success');
+        toast("تم تعديل المركز بنجاح",'success');
         return redirect()->route('govs.index');
     }
 
     public function delete(Gov $gov)
     {
         $gov->delete();
-        toast("تم حذف المنطقة بنجاح",'success');
+        toast("تم حذف المركز بنجاح",'success');
         return redirect()->back();
     }
 

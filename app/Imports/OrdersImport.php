@@ -68,7 +68,7 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
         return [
             'kod_alaamyl' => 'nullable|exists:customers,id', // Ensure the product exists
             'asm_alaamyl' => 'nullable|string', // Ensure the product exists
-            'rkm_alaamyl' => 'nullable|string', // Ensure the product exists
+            'rkm_alaamyl' => 'nullable', // Ensure the product exists
             'kod_almrkz' => 'nullable|exists:cities,id', // Ensure the product exists
             'alaanoan' => 'nullable|string', // Ensure the product exists
             'kod_alsnf' => 'required|exists:products,id', // Ensure the product exists

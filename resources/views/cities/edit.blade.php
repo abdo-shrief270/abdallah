@@ -19,8 +19,8 @@
                         <h3>المراكز</h3>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('cities.index')}}">جميع المراكز</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">تعديل مركز {{$city->name}}</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('cities.index')}}">جميع خطوط السير</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">تعديل خط سير {{$city->name}}</a></li>
                     </ol>
                 </nav>
             </div>
@@ -65,9 +65,9 @@
                                                     <input id="t-text" type="number" name="ship_cost" placeholder="ادخل تكلفة الشحن ...." class="form-control" value="{{$city->ship_cost}}" required>
                                                 </div>
                                                 <div class="form-group mb-4">
-                                                    <label for="exampleFormControlSelect1">تابع لمنطقة</label>
+                                                    <label for="exampleFormControlSelect1">تابع لمركز</label>
                                                     <select name="gov_id" class="form-control" id="exampleFormControlSelect1">
-                                                        <option>اختر منطقة</option>
+                                                        <option>اختر مركز</option>
                                                         @foreach($govs as $gov)
                                                             <option @if($gov->id == $city->gov_id) selected @endif value="{{$gov->id}}">{{$gov->id .' >> '. $gov->name}} </option>
                                                         @endforeach

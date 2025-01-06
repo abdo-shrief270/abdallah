@@ -16,10 +16,10 @@
             <div class="page-header my-3">
                 <nav class="breadcrumb-one" aria-label="breadcrumb">
                     <div class="title">
-                        <h3>المراكز</h3>
+                        <h3>خطوط السير</h3>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">جميع المراكز</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">جميع خطوط السير</a></li>
                     </ol>
                 </nav>
             </div>
@@ -30,9 +30,9 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>المراكز</h4>
-                                    <button class="btn btn-primary"><a href="{{route('cities.create')}}"> اضافة مركز</a> </button>
-                                    <button class="btn btn-secondary"><a href="{{route('cities.export')}}"> تصدير المراكز</a> </button>
+                                    <h4>خطوط السير</h4>
+                                    <button class="btn btn-primary"><a href="{{route('cities.create')}}"> اضافة خط سير</a> </button>
+                                    <button class="btn btn-secondary"><a href="{{route('cities.export')}}"> تصدير خطوط السير</a> </button>
                                 </div>
                             </div>
                         </div>
@@ -43,8 +43,8 @@
                                     <tr>
                                         <th class="checkbox-column text-center"> الكود </th>
                                         <th>الاسم</th>
+                                        <th>المركز</th>
                                         <th>تكلفة الشحن</th>
-                                        <th>المنطقة</th>
                                         <th class="text-center">عمليات</th>
                                     </tr>
                                     </thead>
@@ -53,8 +53,8 @@
                                         <tr>
                                             <td class="checkbox-column text-center h4"> {{$city->id}} </td>
                                             <td class="font-weight-bolder h2">{{$city->name}}</td>
-                                            <td class="font-weight-bolder h2">{{$city->ship_cost}}</td>
                                             <td class="font-weight-bolder h2">{{$city->gov->name}}</td>
+                                            <td class="font-weight-bolder h2">{{$city->ship_cost}}</td>
                                             <td class="text-center">
                                                 <ul class="table-controls">
                                                     <li><a href="{{route('cities.edit',$city->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>

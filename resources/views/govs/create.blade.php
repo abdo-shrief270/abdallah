@@ -16,11 +16,11 @@
             <div class="page-header my-3">
                 <nav class="breadcrumb-one" aria-label="breadcrumb">
                     <div class="title">
-                        <h3>المناطق</h3>
+                        <h3>المراكز</h3>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('govs.index')}}">جميع المناطق</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">اضافة منطقة</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('govs.index')}}">جميع المراكز</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">اضافة مركز</a></li>
                     </ol>
                 </nav>
             </div>
@@ -36,7 +36,7 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>المنطقة</h4>
+                                            <h4>المركز</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -60,9 +60,9 @@
                                                     <input id="t-text" type="text" name="name" placeholder="ادخل الاسم ...." class="form-control"  required>
                                                 </div>
                                                 <div class="form-group mb-4">
-                                                    <label for="exampleFormControlSelect1">تابع لخط سير</label>
+                                                    <label for="exampleFormControlSelect1">تابع لمحافظة</label>
                                                     <select name="rout_id" class="form-control" id="exampleFormControlSelect1">
-                                                        <option>اختر خط سير</option>
+                                                        <option>اختر محافظة</option>
                                                         @foreach($routs as $rout)
                                                             <option value="{{$rout->id}}">{{$rout->id .' >> '. $rout->name}} </option>
                                                         @endforeach

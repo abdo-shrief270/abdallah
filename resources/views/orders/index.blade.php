@@ -44,7 +44,7 @@
                                             <th class="checkbox-column text-center"> الكود </th>
                                             <th>اسم العميل</th>
                                             <th>رقم العميل</th>
-                                            <th>مركز العميل</th>
+                                            <th>خط سير</th>
                                             <th>العنوان</th>
                                             <th>اسم المندوب</th>
                                             <th>رقم المندوب</th>
@@ -118,7 +118,7 @@
                                                 <th class="checkbox-column text-center"> الكود </th>
                                                 <th>اسم العميل</th>
                                                 <th>رقم العميل</th>
-                                                <th>مركز العميل</th>
+                                                <th>خط سير</th>
                                                 <th>العنوان</th>
                                                 <th>اسم المندوب</th>
                                                 <th>رقم المندوب</th>
@@ -193,7 +193,7 @@
                                                 <th class="checkbox-column text-center"> الكود </th>
                                                 <th>اسم العميل</th>
                                                 <th>رقم العميل</th>
-                                                <th>مركز العميل</th>
+                                                <th>خط سير</th>
                                                 <th>العنوان</th>
                                                 <th>اسم المندوب</th>
                                                 <th>رقم المندوب</th>
@@ -268,7 +268,7 @@
                                                 <th class="checkbox-column text-center"> الكود </th>
                                                 <th>اسم العميل</th>
                                                 <th>رقم العميل</th>
-                                                <th>مركز العميل</th>
+                                                <th>خط سير</th>
                                                 <th>العنوان</th>
                                                 <th>اسم المندوب</th>
                                                 <th>رقم المندوب</th>
@@ -345,7 +345,7 @@
                                                 <th class="checkbox-column text-center"> الكود </th>
                                                 <th>اسم العميل</th>
                                                 <th>رقم العميل</th>
-                                                <th>مركز العميل</th>
+                                                <th>خط سير</th>
                                                 <th>العنوان</th>
                                                 <th>اسم المندوب</th>
                                                 <th>رقم المندوب</th>
@@ -417,7 +417,7 @@
                                             <th class="checkbox-column text-center"> الكود </th>
                                             <th>اسم العميل</th>
                                             <th>رقم العميل</th>
-                                            <th>مركز العميل</th>
+                                            <th>خط سير</th>
                                             <th>العنوان</th>
                                             <th>اسم المنتج</th>
                                             <th>الكمية</th>

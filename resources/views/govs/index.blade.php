@@ -16,10 +16,10 @@
             <div class="page-header my-3">
                 <nav class="breadcrumb-one" aria-label="breadcrumb">
                     <div class="title">
-                        <h3>المناطق</h3>
+                        <h3>المراكز</h3>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">جميع المناطق</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">جميع المراكز</a></li>
                     </ol>
                 </nav>
             </div>
@@ -30,9 +30,9 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>المناطق</h4>
-                                    <button class="btn btn-primary"><a href="{{route('govs.create')}}"> اضافة منطقة</a> </button>
-                                    <button class="btn btn-secondary"><a href="{{route('govs.export')}}"> تصدير المناطق</a> </button>
+                                    <h4>المراكز</h4>
+                                    <button class="btn btn-primary"><a href="{{route('govs.create')}}"> اضافة مركز</a> </button>
+                                    <button class="btn btn-secondary"><a href="{{route('govs.export')}}"> تصدير المراكز</a> </button>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                     <tr>
                                         <th class="checkbox-column text-center"> الكود </th>
                                         <th>الاسم</th>
-                                        <th>خط السير</th>
+                                        <th>المحافظة</th>
                                         <th class="text-center">عمليات</th>
                                     </tr>
                                     </thead>

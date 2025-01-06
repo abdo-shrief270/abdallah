@@ -16,11 +16,11 @@
             <div class="page-header my-3">
                 <nav class="breadcrumb-one" aria-label="breadcrumb">
                     <div class="title">
-                        <h3>المراكز</h3>
+                        <h3>خطوط السير</h3>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('cities.index')}}">جميع المراكز</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">اضافة مركز</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('cities.index')}}">جميع خطوط السير</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">اضافة خط سير</a></li>
                     </ol>
                 </nav>
             </div>
@@ -36,7 +36,7 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>المركز</h4>
+                                            <h4>خط سير</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -69,9 +69,9 @@
                                                     <input id="t-text" type="number" name="ship_cost" placeholder="ادخل تكلفة الشحن ...." class="form-control"  required>
                                                 </div>
                                                 <div class="form-group mb-4">
-                                                    <label for="exampleFormControlSelect1">تابع لمنطقة</label>
+                                                    <label for="exampleFormControlSelect1">تابع لمركز</label>
                                                     <select name="gov_id" class="form-control" id="exampleFormControlSelect1">
-                                                        <option>اختر المنطقة</option>
+                                                        <option>اختر المركز</option>
                                                         @foreach($govs as $gov)
                                                             <option value="{{$gov->id}}">{{$gov->id .' >> '. $gov->name}} </option>
                                                         @endforeach

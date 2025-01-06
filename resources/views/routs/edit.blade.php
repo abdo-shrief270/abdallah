@@ -16,11 +16,11 @@
             <div class="page-header my-3">
                 <nav class="breadcrumb-one" aria-label="breadcrumb">
                     <div class="title">
-                        <h3>خطوط السير</h3>
+                        <h3>المحافظات</h3>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('routs.index')}}">جميع خطوط السير</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">تعديل خط سير {{$rout->name}}</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('routs.index')}}">جميع المحافظات</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">تعديل محافظة {{$rout->name}}</a></li>
                     </ol>
                 </nav>
             </div>
@@ -36,7 +36,7 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>تعديل خط سير {{$rout->name}}</h4>
+                                            <h4>تعديل محافظة {{$rout->name}}</h4>
                                         </div>
                                     </div>
                                 </div>

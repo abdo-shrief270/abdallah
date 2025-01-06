@@ -24,7 +24,7 @@ class CityController extends Controller
     public function store(StoreCityRequest $request)
     {
         City::create($request->all());
-        toast("تم اضافة المركز بنجاح",'success');
+        toast("تم اضافة الخط سير بنجاح",'success');
         return redirect()->route('cities.index');
     }
     public function edit(City $city)
@@ -36,14 +36,14 @@ class CityController extends Controller
     {
         $city = City::findOrFail($request->city_id);
         $city->update($request->all());
-        toast("تم تعديل المركز بنجاح",'success');
+        toast("تم تعديل الخط سير بنجاح",'success');
         return redirect()->route('cities.index');
     }
 
     public function delete(City $city)
     {
         $city->delete();
-        toast("تم حذف المركز بنجاح",'success');
+        toast("تم حذف الخط سير بنجاح",'success');
         return redirect()->back();
     }
 

@@ -23,7 +23,7 @@ class RoutController extends Controller
     public function store(StoreRoutRequest $request)
     {
         Rout::create($request->all());
-        toast("تم اضافة خط السير بنجاح",'success');
+        toast("تم اضافة المحافطة بنجاح",'success');
         return redirect()->route('routs.index');
     }
     public function edit(Rout $rout)
@@ -34,14 +34,14 @@ class RoutController extends Controller
     {
         $rout = Rout::findOrFail($request->rout_id);
         $rout->update($request->all());
-        toast("تم تعديل خط السير بنجاح",'success');
+        toast("تم تعديل المحافطة بنجاح",'success');
         return redirect()->route('routs.index');
     }
 
     public function delete(Rout $rout)
     {
         $rout->delete();
-        toast("تم حذف خط السير بنجاح",'success');
+        toast("تم حذف المحافطة بنجاح",'success');
         return redirect()->back();
     }
 
