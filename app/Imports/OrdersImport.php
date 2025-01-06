@@ -20,8 +20,16 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
         $currentRow = $this->rowIndex++;
         // Find product and city using the row data
         $product = Product::findOrFail($row['kod_alsnf']);
-        $customer = Customer::findOrFail($row['kod_alaamyl']);
-
+        if(!$row['kod_alaamyl']){
+            $customer = Customer::create([
+                'name'=>$row['asm_alaamyl'],
+                'phone'=>$row['rkm_alaamyl'],
+                'city_id'=>$row['kod_almrkz'],
+                'address'=>$row['alaanoan'],
+            ]);
+        }else{
+            $customer = Customer::findOrFail($row['kod_alaamyl']);
+        }
         $errors = [];
 
         // Check if the available quantity is less than the requested quantity
@@ -43,7 +51,7 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
 
         // Create and return the order model
         return new Order([
-            'customer_id'     => $row['kod_alaamyl'],
+            'customer_id'       => $customer->id,
             'user_id'           => $row['kod_almndob'],
             'product_id'        => $row['kod_alsnf'],
             'quantity'          => $row['alkmy'],
@@ -58,7 +66,11 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
     {
         // Add rules for validation before importing
         return [
-            'kod_alaamyl' => 'required|exists:customers,id', // Ensure the product exists
+            'kod_alaamyl' => 'nullable|exists:customers,id', // Ensure the product exists
+            'asm_alaamyl' => 'nullable|string', // Ensure the product exists
+            'rkm_alaamyl' => 'nullable|string', // Ensure the product exists
+            'kod_almrkz' => 'nullable|exists:cities,id', // Ensure the product exists
+            'alaanoan' => 'nullable|string', // Ensure the product exists
             'kod_alsnf' => 'required|exists:products,id', // Ensure the product exists
             'alkmy' => 'required|integer|min:1', // Ensure quantity is a positive integer
             'alkhsm_aladafy' => 'nullable|numeric|min:0|max:100', // Discount should be between 0 and 100
@@ -69,7 +81,6 @@ class OrdersImport implements  ToModel, WithHeadingRow, WithValidation
     public function customValidationMessages()
     {
         return [
-            'kod_alaamyl.required' => 'كود العميل مطلوب',
             'kod_alsnf.required' => 'كود الصنف مطلوب',
             'alkmy.required' => 'كيمة الصنف مطلوبة',
             'alkhsm_aladafy.numeric' => 'الخصم يجب ان يكون رقم',

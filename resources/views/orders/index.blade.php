@@ -32,6 +32,7 @@
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                         <h4>كل الأوردرات</h4>
                                         <button class="m-2 btn btn-secondary"><a href="{{route('orders.export')}}">تصدير جميع الاوردرات</a> </button>
+                                        <button class="m-2 btn btn-success"><a href="{{route('orders.importPage')}}">استيراد اوردرات</a> </button>
                                     </div>
                                 </div>
                             </div>
