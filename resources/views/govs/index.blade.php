@@ -51,8 +51,8 @@
                                     @foreach($govs as $gov)
                                         <tr>
                                             <td class="checkbox-column text-center h4"> {{$gov->id}} </td>
-                                            <td class="font-weight-bolder h2">{{$gov->name}}</td>
-                                            <td class="font-weight-bolder h2">{{$gov->rout->name}}</td>
+                                            <td >{{$gov->name}}</td>
+                                            <td >{{$gov->rout->name}}</td>
                                             <td class="text-center">
                                                 <ul class="table-controls">
                                                     <li><a href="{{route('govs.edit',$gov->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>

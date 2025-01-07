@@ -58,15 +58,15 @@
                                     @foreach($users as $user)
                                         <tr>
                                             <td class="checkbox-column text-center h4"> {{$user->id}} </td>
-                                            <td class="font-weight-bolder h2">{{$user->name}}</td>
-                                            <td class="font-weight-bolder h2">{{$user->phone}}</td>
-                                            <td class="font-weight-bolder h2">{{$user->id_number}}</td>
-                                            <td class="font-weight-bolder h2">{{$user->rout->name}}</td>
+                                            <td >{{$user->name}}</td>
+                                            <td >{{$user->phone}}</td>
+                                            <td >{{$user->id_number}}</td>
+                                            <td >{{$user->rout->name}}</td>
                                             <td class="text-primary">{{$user->assignedOrdersCount()}}</td>
                                             <td class="text-warning">{{$user->newOrdersCount()}}</td>
                                             <td class="text-danger">{{$user->unFinishedOrdersCount()}}</td>
                                             <td class="text-success">{{$user->finishedOrdersCount()}}</td>
-                                            <td class="font-weight-bolder h2">{!! $user->active ? '<span class="badge outline-badge-success">نشط</span>' : '<span class="badge outline-badge-danger">غير نشط</span>'!!}</td>
+                                            <td >{!! $user->active ? '<span class="badge outline-badge-success">نشط</span>' : '<span class="badge outline-badge-danger">غير نشط</span>'!!}</td>
                                             <td class="text-center">
                                                 <ul class="table-controls">
                                                     @if($user->active)
