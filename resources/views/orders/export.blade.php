@@ -25,19 +25,19 @@
     @foreach($orders as $order)
         <tr>
             <td class="checkbox-column text-center h4"> {{$order->id}} </td>
-            <td>{{$order->customer->name}}</td>
-            <td>{{$order->customer->phone}}</td>
-            <td>{{$order->customer->city->name}}</td>
-            <td>{{$order->customer->address}}</td>
-            <td>{{$order->user->name}}</td>
-            <td>{{$order->user->phone}}</td>
-            <td>{{$order->product->name}}</td>
-            <td class="text-primary">{{$order->product->net_price}}</td>
+            <td>{{$order->customer?->name}}</td>
+            <td>{{$order->customer?->phone}}</td>
+            <td>{{$order->customer?->city->name}}</td>
+            <td>{{$order->customer?->address}}</td>
+            <td>{{$order->user?->name}}</td>
+            <td>{{$order->user?->phone}}</td>
+            <td>{{$order->product?->name}}</td>
+            <td class="text-primary">{{$order->product?->net_price}}</td>
             <td>{{$order->quantity}}</td>
             <td class="text-warning">{{$order->product->net_price * $order->quantity}}</td>
             <td class="text-danger">{{$order->product->discount}}%</td>
             <td>{{$order->product->price * $order->quantity}}</td>
-            <td class="text-warning">{{$order->customer->city->ship_cost}}</td>
+            <td class="text-warning">{{$order->customer?->city?->ship_cost}}</td>
             <td class="text-secondary">{{$order->product->price * $order->quantity + $order->customer->city->ship_cost}}</td>
             <td class="text-danger">{{$order->add_discount}}%</td>
             <td class="text-success">{{$order->total_price}}</td>
