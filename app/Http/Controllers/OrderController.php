@@ -27,7 +27,7 @@ class OrderController extends Controller
 //        $status_arr = ['new','unFinished','finished'];
         if(Auth::guard('user')->check())
         {
-            $orders = Order::where('user_id',auth('user')->user()->id)->get();
+            $orders = Order::where('user_id',auth('user')->user()->id)->orderBy('created_at','desc')->get();
             return view('orders.index', compact('orders'));
         }
         $orders = Order::orderBy('status')->get();
