@@ -402,143 +402,123 @@
                 @endif
             @endif
             @if(auth()->guard('user')->check())
-                <div class="row layout-spacing">
-                    <div class="col-lg-12">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
+                @foreach($orders as $order)
+                    <div>
+                        <div class="card component-card_4 my-3">
+                            <div class="card-body">
+                                <div class="user-info">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            <h6>كود الأوردر : {{$order->id}}</h6>
+                                        </div>
+                                        <div class="col-md-6 pl-0 col-sm-6 col-12 text-right">
+                                            {!! $order->status=='new' ? '<span class="badge badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge badge-success">تم التوصيل</span>' :'<span class="badge badge-danger">تم الألغاء</span>' ))!!}
+                                        </div>
+                                    </div>
+                                    <h5 class="card-user_name mt-2">{{$order->customer->name}}</h5>
+                                    <p class="card-user_occupation"><a class=" text-info" href="tel:{{$order->customer->phone}}">{{$order->customer->phone}}</a></p>
+                                    <p class="card-text my-3">{{$order->customer->address}}</p>
+                                    <div class="mb-3">
+                                        <div class="h5 text-warning">عدد {{$order->quantity}} من {{$order->product->name}}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="text-success">سعر الأوردر : {{$order->total_price}}
+                                        </div>
+                                    </div>
+                                    <div class="meta-action mt-3">
+                                        <div class="">
+                                            @if ($order->status=='new')
+                                                <a class="btn btn-info my-2" href="{{route('orders.arrive',$order->id)}}" >تم استلام الاوردر</a>
+                                            @elseif($order->status =='unFinished')
+                                                <a class="btn btn-success my-2" href="{{route('orders.finish',$order->id)}}" >تم التوصيل</a>
+                                                <a class="btn btn-danger my-2" href="{{route('orders.cancel',$order->id)}}" >الغاء</a>
+                                            @else
+                                                <a class="btn btn-warning my-2" href="{{route('orders.arrive',$order->id)}}" >استلام من جديد</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <span class="mt-2">اخر تعديل : {{$order->updated_at->diffForHumans()}}</span>
                                 </div>
                             </div>
-                            <div class="widget-content widget-content-area">
-                                <div class="table-responsive mb-4">
-                                    <table id="all_orders" class="table style-3  table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="checkbox-column text-center"> الكود </th>
-                                            <th>اسم العميل</th>
-                                            <th>رقم العميل</th>
-                                            <th>خط سير</th>
-                                            <th>العنوان</th>
-                                            <th>اسم المنتج</th>
-                                            <th>الكمية</th>
-                                            <th>تكلفة الشحن</th>
-                                            <th>تكلفة الأوردر</th>
-                                            <th>حالة الاوردر</th>
-                                            <th class="text-center">عمليات</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($orders as $order)
-                                            <tr>
-                                                <td class="checkbox-column text-center h4"> {{$order->id}} </td>
-                                                <td>{{$order->customer->name}}</td>
-                                                <td>{{$order->customer->phone}}</td>
-                                                <td>{{$order->customer->city->name}}</td>
-                                                <td>{{$order->customer->address}}</td>
-                                                <td>{{$order->product->name}}</td>
-                                                <td>{{$order->quantity}}</td>
-                                                <td class="text-warning">{{$order->customer->city->ship_cost}}</td>
-                                                <td class="text-success">{{$order->total_price}}</td>
-                                                <td>{!! $order->status=='new' ? '<span class="badge outline-badge-primary">لم يتم الاستلام</span>' : ( $order->status=='unFinished' ? '<span class="badge outline-badge-warning">جاري التوصيل</span>' : ( $order->status=='finished' ? '<span class="badge outline-badge-success">تم التوصيل</span>' :'<span class="badge outline-badge-danger">تم الألغاء</span>' ))!!}</td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        @if ($order->status=='new')
-                                                            <li><a href="{{route('orders.arrive',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تم استلام الاوردر"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle p-1 br-6 mb-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></a></li>
-                                                        @elseif($order->status =='unFinished')
-                                                            <li><a href="{{route('orders.finish',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="تم التوصيل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send p-1 br-6 mb-1"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></a></li>
-                                                            <li><a href="{{route('orders.cancel',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="الغاء"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle p-1 br-6 mb-1"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></a></li>
-                                                        @else
-                                                            <li><a href="{{route('orders.arrive',$order->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="استلام من جديد"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw p-1 br-6 mb-1"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></a></li>
-
-                                                        @endif
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                @endforeach
+    @endif
+    </div>
+    @endsection
 
-            @endif
-        </div>
-@endsection
 
-
-@section('scripts')
+    @section('scripts')
 
     <script src="{{asset("plugins/table/datatable/datatables.js")}}"></script>
-<script>
+    <script>
     c1 = $('#all_orders').DataTable({
-        "oLanguage": {
-            "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-            "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
-            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-            "sSearchPlaceholder": "ابحث",
-            "sLengthMenu": "النتائج :  _MENU_",
-        },
-        "stripeClasses": [],
-        "lengthMenu": [5, 10, 20, 50],
-        "pageLength": 5
+    "oLanguage": {
+    "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+    "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
+    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+    "sSearchPlaceholder": "ابحث",
+    "sLengthMenu": "النتائج :  _MENU_",
+    },
+    "stripeClasses": [],
+    "lengthMenu": [5, 10, 20, 50],
+    "pageLength": 5
     });
     multiCheck(c1);
     @if(auth()->guard('owner')->check())
-        c2 = $('#new_orders').DataTable({
-            "oLanguage": {
-                "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "ابحث",
-                "sLengthMenu": "النتائج :  _MENU_",
-            },
-            "stripeClasses": [],
-            "lengthMenu": [5, 10, 20, 50],
-            "pageLength": 5
-        });
-        c3 = $('#un_orders').DataTable({
-            "oLanguage": {
-                "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "ابحث",
-                "sLengthMenu": "النتائج :  _MENU_",
-            },
-            "stripeClasses": [],
-            "lengthMenu": [5, 10, 20, 50],
-            "pageLength": 5
-        });
-        c4 = $('#fi_orders').DataTable({
-            "oLanguage": {
-                "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "ابحث",
-                "sLengthMenu": "النتائج :  _MENU_",
-            },
-            "stripeClasses": [],
-            "lengthMenu": [5, 10, 20, 50],
-            "pageLength": 5
-        });
-        c5 = $('#ca_orders').DataTable({
-            "oLanguage": {
-                "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "ابحث",
-                "sLengthMenu": "النتائج :  _MENU_",
-            },
-            "stripeClasses": [],
-            "lengthMenu": [5, 10, 20, 50],
-            "pageLength": 5
-        });
-        multiCheck(c2);
-        multiCheck(c3);
-        multiCheck(c4);
-        multiCheck(c5);
+    c2 = $('#new_orders').DataTable({
+    "oLanguage": {
+    "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+    "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
+    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+    "sSearchPlaceholder": "ابحث",
+    "sLengthMenu": "النتائج :  _MENU_",
+    },
+    "stripeClasses": [],
+    "lengthMenu": [5, 10, 20, 50],
+    "pageLength": 5
+    });
+    c3 = $('#un_orders').DataTable({
+    "oLanguage": {
+    "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+    "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
+    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+    "sSearchPlaceholder": "ابحث",
+    "sLengthMenu": "النتائج :  _MENU_",
+    },
+    "stripeClasses": [],
+    "lengthMenu": [5, 10, 20, 50],
+    "pageLength": 5
+    });
+    c4 = $('#fi_orders').DataTable({
+    "oLanguage": {
+    "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+    "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
+    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+    "sSearchPlaceholder": "ابحث",
+    "sLengthMenu": "النتائج :  _MENU_",
+    },
+    "stripeClasses": [],
+    "lengthMenu": [5, 10, 20, 50],
+    "pageLength": 5
+    });
+    c5 = $('#ca_orders').DataTable({
+    "oLanguage": {
+    "oPaginate": { "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+    "sInfo": "عرض صفحة _PAGE_ من _PAGES_",
+    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+    "sSearchPlaceholder": "ابحث",
+    "sLengthMenu": "النتائج :  _MENU_",
+    },
+    "stripeClasses": [],
+    "lengthMenu": [5, 10, 20, 50],
+    "pageLength": 5
+    });
+    multiCheck(c2);
+    multiCheck(c3);
+    multiCheck(c4);
+    multiCheck(c5);
     @endif
-</script>
+    </script>
 
-@endsection
+    @endsection
